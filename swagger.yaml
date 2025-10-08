@@ -1,0 +1,5111 @@
+basePath: /
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: A comprehensive 3D printing control system API for resin-based 3D printers
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: NanoDLP API
+  version: "1.0"
+paths:
+  /add-protection:
+    get:
+      consumes:
+      - text/html
+      description: Display password protection page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Add protection page
+          schema:
+            type: string
+      summary: Add protection page
+      tags:
+      - Authentication
+    post:
+      consumes:
+      - multipart/form-data
+      description: Change system password (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password changed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change password
+      tags:
+      - Authentication
+  /advanced-plates:
+    get:
+      consumes:
+      - text/html
+      description: Display advanced plates management page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Advanced plates page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get advanced plates page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Submit advanced plates configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Advanced plates submitted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Submit advanced plates
+      tags:
+      - Plates
+  /analytic:
+    get:
+      consumes:
+      - text/html
+      description: Display analytics dashboard page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Analytics page
+          schema:
+            type: string
+      summary: Get analytics page
+      tags:
+      - Analytics
+  /analytic/data/{count}:
+    get:
+      consumes:
+      - application/json
+      description: Get analytics data for specified count
+      parameters:
+      - description: Data count
+        in: path
+        name: count
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Analytics data
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get analytics data
+      tags:
+      - Analytics
+  /analytic/enable:
+    get:
+      consumes:
+      - application/json
+      description: Enable analytics collection
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Analytics enabled
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Enable analytics
+      tags:
+      - Analytics
+  /analytic/file/{file}:
+    get:
+      consumes:
+      - application/json
+      description: Get analytics data from file
+      parameters:
+      - description: File name
+        in: path
+        name: file
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Analytics file data
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get analytics file
+      tags:
+      - Analytics
+  /analytic/legend:
+    get:
+      consumes:
+      - application/json
+      description: Get analytics legend information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Analytics legend
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get analytics legend
+      tags:
+      - Analytics
+  /analytic/plate/{plateID}:
+    get:
+      consumes:
+      - application/json
+      description: Get analytics data for specific plate
+      parameters:
+      - description: Plate ID
+        in: path
+        name: plateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate analytics
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get plate analytics
+      tags:
+      - Analytics
+  /analytic/reset:
+    get:
+      consumes:
+      - application/json
+      description: Reset analytics data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Analytics reset
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Reset analytics
+      tags:
+      - Analytics
+  /analytic/value/{kpi}:
+    get:
+      consumes:
+      - application/json
+      description: Get specific KPI value from analytics
+      parameters:
+      - description: KPI name
+        in: path
+        name: kpi
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Analytics value
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get analytics value
+      tags:
+      - Analytics
+  /api/editor/v1/baseplate:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a baseplate for the mesh
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Baseplate created
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create baseplate
+      tags:
+      - Editor
+  /api/editor/v1/crashed:
+    get:
+      consumes:
+      - application/json
+      description: Check if the editor has crashed
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Crash status
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Check if crashed
+      tags:
+      - Editor
+  /api/editor/v1/cup:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a cup shape from mesh
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cup created
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create cup
+      tags:
+      - Editor
+  /api/editor/v1/echo:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Echo test endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Echo response
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Echo test
+      tags:
+      - Editor
+  /api/editor/v1/estimate:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Estimate print time and material
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Print estimate
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Estimate print
+      tags:
+      - Editor
+  /api/editor/v1/file/load/{file}:
+    get:
+      consumes:
+      - application/json
+      description: Load a file in the editor
+      parameters:
+      - description: File name
+        in: path
+        name: file
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: File loaded
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Load file
+      tags:
+      - Editor
+  /api/editor/v1/file/save/{file}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save a file from the editor
+      parameters:
+      - description: File name
+        in: path
+        name: file
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: File saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save file
+      tags:
+      - Editor
+  /api/editor/v1/hole:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a hole in the mesh
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Hole created
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create hole
+      tags:
+      - Editor
+  /api/editor/v1/hollowing:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Perform hollowing operation on mesh
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Hollowing completed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Hollow mesh
+      tags:
+      - Editor
+  /api/editor/v1/indexedbuffer:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Convert mesh to indexed buffer format
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Buffer converted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Convert to indexed buffer
+      tags:
+      - Editor
+  /api/editor/v1/install:
+    get:
+      consumes:
+      - application/json
+      description: Install the editor component
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Editor installed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Install editor
+      tags:
+      - Editor
+  /api/editor/v1/mesh/get/{UUID}:
+    get:
+      consumes:
+      - application/json
+      description: Get mesh metadata by UUID
+      parameters:
+      - description: Mesh UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh metadata
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get mesh metadata
+      tags:
+      - Editor
+  /api/editor/v1/mesh/get/mesh/{UUID}:
+    get:
+      consumes:
+      - application/json
+      description: Get mesh triangle data by UUID
+      parameters:
+      - description: Mesh UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh triangles
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get mesh triangles
+      tags:
+      - Editor
+  /api/editor/v1/mesh/preview:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate mesh image preview
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh image preview
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Mesh image preview
+      tags:
+      - Editor
+  /api/editor/v1/mesh/set:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Set mesh data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh set
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Set mesh
+      tags:
+      - Editor
+  /api/editor/v1/orient:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Orient mesh using legacy method (deprecated)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh oriented
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Orient mesh (legacy)
+      tags:
+      - Editor
+  /api/editor/v1/orient/{UUID}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Orient mesh for optimal printing
+      parameters:
+      - description: Mesh UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh oriented
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Orient mesh
+      tags:
+      - Editor
+  /api/editor/v1/pack:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Perform tight operation on mesh
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Tight operation completed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Pack mesh
+      tags:
+      - Editor
+  /api/editor/v1/parse/mesh:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Parse mesh file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh parsed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Parse mesh
+      tags:
+      - Editor
+  /api/editor/v1/parse/stl:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Parse STL file using legacy method (deprecated)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: STL parsed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Parse STL (legacy)
+      tags:
+      - Editor
+  /api/editor/v1/preview/mesh/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get mesh preview image
+      parameters:
+      - description: Mesh ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh preview
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Preview mesh
+      tags:
+      - Editor
+  /api/editor/v1/printer/add:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add a new printer to the editor
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add printer
+      tags:
+      - Editor
+  /api/editor/v1/printer/delete/{UUID}:
+    get:
+      consumes:
+      - application/json
+      description: Delete a printer by UUID
+      parameters:
+      - description: Printer UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer deleted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete printer
+      tags:
+      - Editor
+  /api/editor/v1/printer/detail/{UUID}/{host}:
+    get:
+      consumes:
+      - application/json
+      description: Fetch profiles and machine details for a remote NanoDLP printer
+      parameters:
+      - description: Printer UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      - description: Printer host
+        in: path
+        name: host
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer details
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get printer details
+      tags:
+      - Editor
+  /api/editor/v1/printer/list:
+    get:
+      consumes:
+      - application/json
+      description: Discover remote NanoDLP printers on the network
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of printers
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+      security:
+      - BearerAuth: []
+      summary: List printers
+      tags:
+      - Editor
+  /api/editor/v1/printer/plate/send-stl:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Send the arranged plate as a plain STL file to printer without
+        slicing for use with remote slicers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: STL plate sent
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Send plate as STL
+      tags:
+      - Editor
+  /api/editor/v1/printer/slice/convert/{format}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Convert slice to specified format
+      parameters:
+      - description: Output format
+        in: path
+        name: format
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Slice converted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Convert slice format
+      tags:
+      - Editor
+  /api/editor/v1/printer/slice/download:
+    get:
+      consumes:
+      - application/json
+      description: Download slice file from remote printer
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Slice file
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Download slice
+      tags:
+      - Editor
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload slice file for download
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Slice uploaded
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upload slice for download
+      tags:
+      - Editor
+  /api/editor/v1/printer/slice/preview:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Communicate with a remote NanoDLP printer for slice preview
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Slice preview
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Slice preview
+      tags:
+      - Editor
+  /api/editor/v1/printer/slice/preview/{layer}/{path}:
+    get:
+      consumes:
+      - application/json
+      description: Get layer preview for slicing
+      parameters:
+      - description: Layer number
+        in: path
+        name: layer
+        required: true
+        type: string
+      - description: File path
+        in: path
+        name: path
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Layer preview
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Layer preview
+      tags:
+      - Editor
+  /api/editor/v1/printer/slice/send:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Communicate with a remote NanoDLP printer to send slice
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Slice sent
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Send slice
+      tags:
+      - Editor
+  /api/editor/v1/repair:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Repair mesh geometry issues
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh repaired
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Repair mesh
+      tags:
+      - Editor
+  /api/editor/v1/serve/stl/{file}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Serve STL file
+      parameters:
+      - description: File name
+        in: path
+        name: file
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: STL served
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Serve STL
+      tags:
+      - Editor
+  /api/editor/v1/slice/multi:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Perform multi-slice operation
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Multi-slice completed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Multi-slice
+      tags:
+      - Editor
+  /api/editor/v1/slice/multi/static:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Perform static multi-slice operation
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Static multi-slice completed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Static multi-slice
+      tags:
+      - Editor
+  /api/editor/v1/split:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Split the mesh into parts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh split
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Split mesh
+      tags:
+      - Editor
+  /api/editor/v1/support/tree:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate tree support structure
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Tree support generated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Generate tree support
+      tags:
+      - Editor
+  /api/editor/v1/upgrade/go/{version}:
+    get:
+      consumes:
+      - application/json
+      description: Upgrade NanoSupport to specified version or channel (stable/beta)
+      parameters:
+      - description: Version to upgrade to
+        in: path
+        name: version
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Upgrade started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upgrade NanoSupport
+      tags:
+      - Editor
+  /api/editor/v1/upgrade/info:
+    get:
+      consumes:
+      - application/json
+      description: Get editor upgrade information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Upgrade information
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get upgrade info
+      tags:
+      - Editor
+  /api/editor/v1/upgrade/match/{UUID}/{host}:
+    get:
+      consumes:
+      - application/json
+      description: Reads the remote printer version and triggers editor upgrade to
+        matching stable/beta channel
+      parameters:
+      - description: Printer UUID
+        in: path
+        name: UUID
+        required: true
+        type: string
+      - description: Printer host (ip:port)
+        in: path
+        name: host
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Match started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Match editor NanoSupport to printer version
+      tags:
+      - Editor
+  /api/editor/v1/upgrade/status:
+    get:
+      consumes:
+      - application/json
+      description: Get editor upgrade status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Upgrade status
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get upgrade status
+      tags:
+      - Editor
+  /api/v1/athena/calibration/add/{calibrationFile}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add calibration file for Athena to test use curl -X POST \
+      parameters:
+      - description: Calibration file name
+        in: path
+        name: calibrationFile
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Calibration added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add calibration
+      tags:
+      - Slicing
+  /api/v1/calibration/add-advanced:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 'Add flexible calibration: existing pack or uploaded STL, auto-placement,
+        accumulative or separate cure times'
+      parameters:
+      - description: 'Source type: ''pack'' or ''stl'' (default: pack)'
+        in: formData
+        name: sourceType
+        type: string
+      - description: Calibration base file name (when sourceType=pack)
+        in: formData
+        name: calibrationFile
+        type: string
+      - description: STL file (when sourceType=stl)
+        in: formData
+        name: STLFile
+        type: file
+      - description: Comma separated cure times
+        in: formData
+        name: curetimes
+        required: true
+        type: string
+      - description: 'Cure time mode: ''accumulative'' (default) or ''separate'''
+        in: formData
+        name: mode
+        type: string
+      - description: Profile ID
+        in: formData
+        name: ProfileID
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Calibration added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add advanced calibration
+      tags:
+      - Slicing
+  /api/v1/job/add:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add a new print job via REST API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Job added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add job (REST)
+      tags:
+      - Slicing
+  /api/v1/printer/printer/pause:
+    get:
+      consumes:
+      - application/json
+      description: Pause the current print job via REST API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing paused
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Pause printing (REST)
+      tags:
+      - Printer
+  /api/v1/printer/printer/stop:
+    get:
+      consumes:
+      - application/json
+      description: Stop the current print job via REST API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing stopped
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Stop printing (REST)
+      tags:
+      - Printer
+  /api/v1/printer/printer/unpause:
+    get:
+      consumes:
+      - application/json
+      description: Unpause the current print job via REST API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing unpaused
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Unpause printing (REST)
+      tags:
+      - Printer
+  /api/v1/printer/resume/{PlateID}:
+    post:
+      consumes:
+      - application/json
+      description: Resume printing from a specific plate
+      parameters:
+      - description: Plate ID to resume from
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing resumed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Resume printing (REST)
+      tags:
+      - Printer
+  /api/v1/printer/start/{PlateID}:
+    post:
+      consumes:
+      - application/json
+      description: Start printing a specific plate via REST API
+      parameters:
+      - description: Plate ID to print
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Start printing (REST)
+      tags:
+      - Printer
+  /api/v1/wasm/balance/{type}:
+    get:
+      consumes:
+      - application/json
+      description: Get WASM balance by type
+      parameters:
+      - description: Balance type
+        in: path
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM balance
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get WASM balance
+      tags:
+      - Plates
+  /api/v1/wasm/file/add/{plateID}/{name}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add a file to WASM plate
+      parameters:
+      - description: Plate ID
+        in: path
+        name: plateID
+        required: true
+        type: string
+      - description: File name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM file added
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Add WASM file
+      tags:
+      - Plates
+  /api/v1/wasm/file/add/{plateID}/area/{layerID}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add an area to WASM plate
+      parameters:
+      - description: Plate ID
+        in: path
+        name: plateID
+        required: true
+        type: string
+      - description: Layer ID
+        in: path
+        name: layerID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM area added
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Add WASM area
+      tags:
+      - Plates
+  /api/v1/wasm/plate/{plateID}/verify:
+    get:
+      consumes:
+      - application/json
+      description: Verify WASM plate
+      parameters:
+      - description: Plate ID
+        in: path
+        name: plateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM plate verification
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Verify WASM plate
+      tags:
+      - Plates
+  /api/v1/wasm/plate/add/:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add a new WASM plate
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM plate added
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Add WASM plate
+      tags:
+      - Plates
+  /api/v1/wasm/plate/add/source/{plateID}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add source to WASM plate
+      parameters:
+      - description: Plate ID
+        in: path
+        name: plateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM source added
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Add WASM source
+      tags:
+      - Plates
+  /api/v1/wasm/plate/update/:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Update WASM plate
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WASM plate updated
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update WASM plate
+      tags:
+      - Plates
+  /button/press/{ID}:
+    get:
+      consumes:
+      - application/json
+      description: Press a custom button
+      parameters:
+      - description: Button ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Button pressed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Press button
+      tags:
+      - Settings
+  /button/press/{ID}/{State}:
+    get:
+      consumes:
+      - application/json
+      description: Set button state
+      parameters:
+      - description: Button ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      - description: Button state
+        in: path
+        name: State
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Button state set
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Set button state
+      tags:
+      - Settings
+  /button/state/{ID}:
+    get:
+      consumes:
+      - application/json
+      description: Get button state
+      parameters:
+      - description: Button ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Button state
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get button state
+      tags:
+      - Settings
+  /camera/take:
+    get:
+      consumes:
+      - application/json
+      description: Take a photo with the camera
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Photo taken
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Take photo
+      tags:
+      - Hardware
+  /custom/{page}:
+    get:
+      consumes:
+      - text/html
+      description: Handle custom page requests (Manufacturer access required)
+      parameters:
+      - description: Page name
+        in: path
+        name: page
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Custom page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Custom page handler
+      tags:
+      - Settings
+  /debug:
+    get:
+      consumes:
+      - application/json
+      description: Download debug information file (Authentication required)
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Debug file
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Get debug file
+      tags:
+      - Debug
+  /debug/continue:
+    get:
+      consumes:
+      - application/json
+      description: Continue debug operation (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Debug continued
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Continue debug
+      tags:
+      - Hardware
+  /debug/dismiss:
+    get:
+      consumes:
+      - application/json
+      description: Dismiss debug alerts (Demo mode not allowed)
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Redirect to home
+          schema:
+            type: string
+      summary: Dismiss debug alerts
+      tags:
+      - Debug
+  /debug/performance/{type}:
+    get:
+      consumes:
+      - application/json
+      description: Start or stop performance profiling (Demo mode not allowed)
+      parameters:
+      - description: Profile type (trace, memory, or cpu)
+        in: path
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Redirect to home
+          schema:
+            type: string
+      summary: Collect performance profile
+      tags:
+      - Debug
+  /debug/send:
+    get:
+      consumes:
+      - application/json
+      description: Send debug information to remote server (Demo mode not allowed)
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Redirect to home
+          schema:
+            type: string
+      summary: Send debug information
+      tags:
+      - Debug
+  /debug/verbose:
+    get:
+      consumes:
+      - application/json
+      description: Enable verbose logging mode (Demo mode not allowed)
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Redirect to home
+          schema:
+            type: string
+      summary: Enable verbose logging
+      tags:
+      - Debug
+  /device.xml:
+    get:
+      consumes:
+      - text/xml
+      description: Retrieve UPnP device description XML
+      produces:
+      - text/xml
+      responses:
+        "200":
+          description: UPnP device XML
+          schema:
+            type: string
+      summary: Get UPnP device XML
+      tags:
+      - Printer
+  /estimate/{profileID}/{height}:
+    get:
+      consumes:
+      - application/json
+      description: Estimate print time and material for a plate
+      parameters:
+      - description: Profile ID
+        in: path
+        name: profileID
+        required: true
+        type: string
+      - description: Print height
+        in: path
+        name: height
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate estimate
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Estimate plate
+      tags:
+      - Slicing
+  /fan/off:
+    get:
+      consumes:
+      - application/json
+      description: Turn off the cooling fan
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Fan turned off
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Turn off fan
+      tags:
+      - Hardware
+  /fan/on:
+    get:
+      consumes:
+      - application/json
+      description: Turn on the cooling fan
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Fan turned on
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Turn on fan
+      tags:
+      - Hardware
+  /favicon.ico:
+    get:
+      consumes:
+      - image/x-icon
+      description: Redirect to favicon
+      produces:
+      - image/x-icon
+      responses:
+        "302":
+          description: Favicon redirect
+          schema:
+            type: string
+      summary: Get favicon
+      tags:
+      - Printer
+  /formula:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Display formula calculation page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Formula page
+          schema:
+            type: string
+      summary: Formula page
+      tags:
+      - Printer
+  /gcode:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Send manual G-code command
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: G-code sent
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Send G-code
+      tags:
+      - Hardware
+  /help/{files}:
+    get:
+      consumes:
+      - text/html
+      description: Display help documentation
+      parameters:
+      - description: Help files
+        in: path
+        name: files
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Help content
+          schema:
+            type: string
+      summary: Display help
+      tags:
+      - Printer
+  /import:
+    get:
+      consumes:
+      - text/html
+      description: Display import page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Import page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Import page
+      tags:
+      - Settings
+  /info:
+    get:
+      consumes:
+      - text/html
+      description: Display information page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Info page
+          schema:
+            type: string
+      summary: Get info page
+      tags:
+      - Printer
+  /info/{page}:
+    get:
+      consumes:
+      - text/html
+      description: Display information page
+      parameters:
+      - description: Page name
+        in: path
+        name: page
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Info page
+          schema:
+            type: string
+      summary: Get info page
+      tags:
+      - Printer
+  /initGPU:
+    get:
+      consumes:
+      - application/json
+      description: Start display casting functionality
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Display casting started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Start display casting
+      tags:
+      - Display
+  /json/db/{file}:
+    get:
+      consumes:
+      - application/json
+      description: Serve database file (Authentication required)
+      parameters:
+      - description: Database file name
+        in: path
+        name: file
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Database file
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Serve database file
+      tags:
+      - Printer
+  /json/index:
+    get:
+      consumes:
+      - application/json
+      description: Get home page data as JSON
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Home data
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get home JSON
+      tags:
+      - Hardware
+  /json/network/status:
+    get:
+      consumes:
+      - application/json
+      description: Get network connection status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Network status
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get network status
+      tags:
+      - Hardware
+  /json/setup/timezone:
+    get:
+      consumes:
+      - application/json
+      description: Get timezone data as JSON (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Timezone data
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get timezone JSON
+      tags:
+      - Settings
+  /json/usb:
+    get:
+      consumes:
+      - application/json
+      description: Get list of USB files
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: USB files
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get USB files
+      tags:
+      - Hardware
+  /json/wifi:
+    get:
+      consumes:
+      - application/json
+      description: Get available WiFi networks
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WiFi networks
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get WiFi list
+      tags:
+      - Hardware
+  /layer/preview/{plateID}/{layerID}:
+    get:
+      consumes:
+      - application/json
+      description: Get layer preview information
+      parameters:
+      - description: Plate ID
+        in: path
+        name: plateID
+        required: true
+        type: string
+      - description: Layer ID
+        in: path
+        name: layerID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Layer preview info
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Preview layer info
+      tags:
+      - Plates
+  /log:
+    get:
+      consumes:
+      - application/json
+      description: Display system log information
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: Log content
+          schema:
+            type: string
+      summary: Display log
+      tags:
+      - Debug
+  /login:
+    get:
+      consumes:
+      - text/html
+      description: Display login page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Login page
+          schema:
+            type: string
+      summary: Login page
+      tags:
+      - Authentication
+    post:
+      consumes:
+      - multipart/form-data
+      description: Submit login credentials
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login result
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Submit login
+      tags:
+      - Authentication
+  /login/manufacturer:
+    get:
+      consumes:
+      - text/html
+      description: Display manufacturer login page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Manufacturer login page
+          schema:
+            type: string
+      summary: Manufacturer login page
+      tags:
+      - Authentication
+    post:
+      consumes:
+      - multipart/form-data
+      description: Submit manufacturer login credentials
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Manufacturer login result
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Submit manufacturer login
+      tags:
+      - Authentication
+  /mask/add:
+    get:
+      consumes:
+      - text/html
+      description: Display mask addition page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Add mask page
+          schema:
+            type: string
+      summary: Add mask page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save mask configuration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mask saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save mask
+      tags:
+      - Plates
+  /mask/form:
+    get:
+      consumes:
+      - text/html
+      description: Display mask generation form
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Mask generation form
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Mask generation form
+      tags:
+      - Plates
+  /mask/generate/{type}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate mask of specified type
+      parameters:
+      - description: Mask type
+        in: path
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mask generated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Generate mask
+      tags:
+      - Plates
+  /mask/grid:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate grid for mask
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Grid generated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Generate grid
+      tags:
+      - Plates
+  /notification:
+    get:
+      consumes:
+      - text/html
+      description: Show system notifications
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Notification page
+          schema:
+            type: string
+      summary: Display notifications
+      tags:
+      - Printer
+  /notification/disable/{timestamp}:
+    get:
+      consumes:
+      - application/json
+      description: Disable a specific notification by timestamp
+      parameters:
+      - description: Notification timestamp
+        in: path
+        name: timestamp
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Notification disabled
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Disable notification
+      tags:
+      - Printer
+  /oem-lock:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Change OEM lock settings (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OEM lock changed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change OEM lock
+      tags:
+      - Authentication
+  /online-access:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Change online access settings (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Online access changed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change online access
+      tags:
+      - Authentication
+  /page/{file}/{title}:
+    get:
+      consumes:
+      - text/html
+      description: Display a specific page by file and title
+      parameters:
+      - description: File name
+        in: path
+        name: file
+        required: true
+        type: string
+      - description: Page title
+        in: path
+        name: title
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Page content
+          schema:
+            type: string
+      summary: Display page
+      tags:
+      - Printer
+  /plate/add:
+    get:
+      consumes:
+      - text/html
+      description: Display plate addition page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Add plate page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Add plate page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add a new job via web interface
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Job added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add job (Web)
+      tags:
+      - Slicing
+  /plate/add-support:
+    get:
+      consumes:
+      - text/html
+      description: Display support addition page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Add support page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Add support page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload support files for a plate
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Support uploaded
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upload support
+      tags:
+      - Plates
+  /plate/calibration-advanced:
+    get:
+      consumes:
+      - text/html
+      description: Display advanced calibration UI to submit STL or select pack and
+        options
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Advanced calibration page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Advanced calibration page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Submit advanced calibration form and redirect to dashboard on success
+      produces:
+      - text/html
+      responses:
+        "302":
+          description: Redirect to dashboard
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Advanced calibration submit
+      tags:
+      - Plates
+  /plate/clone/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Clone an existing plate
+      parameters:
+      - description: Plate ID to clone
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate cloned
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Clone plate
+      tags:
+      - Plates
+  /plate/cover/{PlateID}:
+    get:
+      consumes:
+      - text/html
+      description: Display plate cover page
+      parameters:
+      - description: Plate ID
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Plate cover page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Plate cover page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save plate cover
+      parameters:
+      - description: Plate ID
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cover saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save cover
+      tags:
+      - Plates
+  /plate/delete/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Delete a specific plate
+      parameters:
+      - description: Plate ID to delete
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate deleted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete plate
+      tags:
+      - Plates
+  /plate/download/{PlateID}/{Type}:
+    get:
+      consumes:
+      - application/json
+      description: Download plate file
+      parameters:
+      - description: Plate ID
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      - description: Download type
+        in: path
+        name: Type
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Plate file
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Download plate
+      tags:
+      - Plates
+  /plate/edit/{PlateID}:
+    get:
+      consumes:
+      - text/html
+      description: Display plate editing page
+      parameters:
+      - description: Plate ID to edit
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Edit plate page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Edit plate page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Update plate information
+      parameters:
+      - description: Plate ID to update
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate updated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Update plate
+      tags:
+      - Plates
+  /plate/generator:
+    get:
+      consumes:
+      - text/html
+      description: Display plate generator page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Plate generator page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Plate generator page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate a new plate
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate generated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Generate plate
+      tags:
+      - Plates
+  /plate/layer-generator:
+    get:
+      consumes:
+      - text/html
+      description: Display layer generator page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Layer generator page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Layer generator page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add layer extrude to plate
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Layer extrude added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add layer extrude
+      tags:
+      - Plates
+  /plate/pcb-generator:
+    get:
+      consumes:
+      - text/html
+      description: Display PCB generator page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: PCB generator page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: PCB generator page
+      tags:
+      - Plates
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add PCB to plate
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: PCB added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add PCB
+      tags:
+      - Plates
+  /plate/preview:
+    get:
+      consumes:
+      - text/html
+      description: Display preview page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Preview page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Show preview
+      tags:
+      - Plates
+  /plate/preview/{PlateID}:
+    get:
+      consumes:
+      - text/html
+      description: Display plate preview page
+      parameters:
+      - description: Plate ID to preview
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Plate preview page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Preview plate
+      tags:
+      - Plates
+  /plate/preview/{PlateID}/{LayerID}:
+    get:
+      consumes:
+      - text/html
+      description: Display layer image preview
+      parameters:
+      - description: Plate ID
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      - description: Layer ID
+        in: path
+        name: LayerID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Layer image preview
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Preview layer image
+      tags:
+      - Plates
+  /plate/preview/image/{image}:
+    get:
+      consumes:
+      - text/html
+      description: Display image preview page
+      parameters:
+      - description: Image name
+        in: path
+        name: image
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Image preview page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Preview image
+      tags:
+      - Plates
+  /plate/regenerate:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Regenerate a plate with new settings via POST
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate regenerated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Regenerate plate (POST)
+      tags:
+      - Slicing
+  /plate/regenerate-wasm/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Regenerate a plate using WebAssembly
+      parameters:
+      - description: Plate ID to regenerate
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate regenerated with WASM
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Regenerate plate with WASM
+      tags:
+      - Plates
+  /plate/regenerate/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Regenerate a plate with new settings
+      parameters:
+      - description: Plate ID to regenerate
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plate regenerated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Regenerate plate
+      tags:
+      - Slicing
+  /plate/repair-regenerate/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Repair and regenerate a plate file
+      parameters:
+      - description: Plate ID to repair and regenerate
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: File repaired and regenerated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Repair and regenerate file
+      tags:
+      - Plates
+  /plate/repair/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Repair a plate file
+      parameters:
+      - description: Plate ID to repair
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: File repaired
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Repair file
+      tags:
+      - Plates
+  /plate/restore/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Restore a deleted job
+      parameters:
+      - description: Plate ID to restore
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Job restored
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Restore job
+      tags:
+      - Plates
+  /plate/result/{PlateID}/{PrintID}/{Result}:
+    get:
+      consumes:
+      - application/json
+      description: Set print result for a plate
+      parameters:
+      - description: Plate ID
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      - description: Print ID
+        in: path
+        name: PrintID
+        required: true
+        type: string
+      - description: Result value
+        in: path
+        name: Result
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Result set
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Set result
+      tags:
+      - Plates
+  /plate/result/dismiss:
+    get:
+      consumes:
+      - application/json
+      description: Dismiss a print result
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Result dismissed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Dismiss result
+      tags:
+      - Plates
+  /plate/temp/path:
+    get:
+      consumes:
+      - application/json
+      description: Get temporary path for plate files
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Temp path
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get plate temp path
+      tags:
+      - Plates
+  /plates:
+    get:
+      consumes:
+      - text/html
+      description: Display plates management page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Plates page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get plates page
+      tags:
+      - Plates
+  /plates/delete:
+    get:
+      consumes:
+      - application/json
+      description: Delete selected plates
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plates deleted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete plates
+      tags:
+      - Plates
+  /plates/history:
+    get:
+      consumes:
+      - text/html
+      description: Display print history page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Print history page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get print history
+      tags:
+      - Plates
+  /plates/list:
+    get:
+      consumes:
+      - text/html
+      description: Display jobs list page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Jobs list page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get jobs list
+      tags:
+      - Plates
+  /plates/list/json:
+    get:
+      consumes:
+      - application/json
+      description: Get plates data as JSON array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Plates array
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+      security:
+      - BearerAuth: []
+      summary: Get plates array list
+      tags:
+      - Plates
+  /plates/restore:
+    get:
+      consumes:
+      - text/html
+      description: Display deleted jobs list page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Deleted jobs page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get deleted jobs list
+      tags:
+      - Plates
+  /print/preview/{PrintID}:
+    get:
+      consumes:
+      - text/html
+      description: Display print preview page
+      parameters:
+      - description: Print ID
+        in: path
+        name: PrintID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Print preview page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Print preview page
+      tags:
+      - Plates
+  /printer:
+    get:
+      consumes:
+      - text/html
+      description: Display printer control page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Printer page
+          schema:
+            type: string
+      summary: Get printer page
+      tags:
+      - Printer
+  /printer/auto-shutdown/{mode}:
+    get:
+      consumes:
+      - application/json
+      description: Toggle auto shutdown mode
+      parameters:
+      - description: Shutdown mode
+        in: path
+        name: mode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Auto shutdown toggled
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Toggle auto shutdown
+      tags:
+      - Printer
+  /printer/backup:
+    get:
+      consumes:
+      - application/json
+      description: Create a backup of printer settings (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Backup created
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Backup printer
+      tags:
+      - Printer
+  /printer/cast:
+    get:
+      consumes:
+      - application/json
+      description: Start display casting functionality
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Display casting started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Start display casting
+      tags:
+      - Display
+  /printer/distro/{distro}:
+    get:
+      consumes:
+      - application/json
+      description: Change printer distribution (Manufacturer access required)
+      parameters:
+      - description: Distribution name
+        in: path
+        name: distro
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Distribution changed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change distribution
+      tags:
+      - Printer
+  /printer/edit/pi:
+    get:
+      consumes:
+      - text/html
+      description: Display PI settings editing page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: PI settings page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Edit PI settings page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save PI settings (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: PI settings saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save PI settings
+      tags:
+      - Settings
+  /printer/expand-fs:
+    get:
+      consumes:
+      - application/json
+      description: Expand the filesystem (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Filesystem expanded
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Expand filesystem
+      tags:
+      - Printer
+  /printer/force-stop:
+    get:
+      consumes:
+      - application/json
+      description: Force stop the current print job
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing force stopped
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Force stop printing
+      tags:
+      - Printer
+  /printer/hmi/restart:
+    get:
+      consumes:
+      - application/json
+      description: Restart the Human Machine Interface (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: HMI restarting
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Restart HMI
+      tags:
+      - Printer
+  /printer/hmi/start:
+    get:
+      consumes:
+      - application/json
+      description: Start the Human Machine Interface (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: HMI started
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Start HMI
+      tags:
+      - Printer
+  /printer/hmi/stop:
+    get:
+      consumes:
+      - application/json
+      description: Stop the Human Machine Interface (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: HMI stopped
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Stop HMI
+      tags:
+      - Printer
+  /printer/ip:
+    get:
+      consumes:
+      - application/json
+      description: Get the printer's IP address
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer IP addresses
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get printer IP
+      tags:
+      - Printer
+  /printer/mem/free:
+    get:
+      consumes:
+      - application/json
+      description: Free system memory (Authentication required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Memory freed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Free memory
+      tags:
+      - Printer
+  /printer/off:
+    get:
+      consumes:
+      - application/json
+      description: Turn off the printer (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer turned off
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Turn off printer
+      tags:
+      - Printer
+  /printer/pause:
+    get:
+      consumes:
+      - application/json
+      description: Pause the current print job via web interface
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing paused
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Pause printing (Web)
+      tags:
+      - Printer
+  /printer/reload:
+    get:
+      consumes:
+      - application/json
+      description: Reload the NanoDLP application (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: NanoDLP reloading
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Reload NanoDLP
+      tags:
+      - Printer
+  /printer/restart:
+    get:
+      consumes:
+      - application/json
+      description: Restart the printer system (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer restarting
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Restart printer
+      tags:
+      - Printer
+  /printer/restore:
+    get:
+      consumes:
+      - text/html
+      description: Display printer restore page (Admin access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Restore page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get restore page
+      tags:
+      - Printer
+    post:
+      consumes:
+      - multipart/form-data
+      description: Restore printer from backup (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer restored
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Restore printer
+      tags:
+      - Printer
+  /printer/restore-default:
+    get:
+      consumes:
+      - application/json
+      description: Restore printer to default settings (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Default settings restored
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Restore default settings
+      tags:
+      - Printer
+  /printer/resume:
+    get:
+      consumes:
+      - application/json
+      description: Resume the current print job via web interface
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing resumed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Resume printing (Web)
+      tags:
+      - Printer
+  /printer/start-after-slice/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Start printing a plate after slicing is complete
+      parameters:
+      - description: Plate ID to print
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing started after slice
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Start printing after slice
+      tags:
+      - Printer
+  /printer/start/{PlateID}:
+    get:
+      consumes:
+      - application/json
+      description: Start printing a specific plate via web interface
+      parameters:
+      - description: Plate ID to print
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing started
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Start printing (Web)
+      tags:
+      - Printer
+    post:
+      consumes:
+      - application/json
+      description: Start printing a specific plate via web POST
+      parameters:
+      - description: Plate ID to print
+        in: path
+        name: PlateID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing started
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Start printing (Web POST)
+      tags:
+      - Printer
+  /printer/stat:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve printer-specific statistics
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer statistics
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get printer statistics
+      tags:
+      - Printer
+  /printer/stat/reset:
+    get:
+      consumes:
+      - application/json
+      description: Reset printer statistics (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Statistics reset
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Reset statistics
+      tags:
+      - Printer
+  /printer/stop:
+    get:
+      consumes:
+      - application/json
+      description: Stop the current print job via web interface
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing stopped
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Stop printing (Web)
+      tags:
+      - Printer
+  /printer/terminate:
+    get:
+      consumes:
+      - application/json
+      description: Terminate the printer process (Printing must be stopped)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printer terminated
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Terminate printer
+      tags:
+      - Printer
+  /printer/unpause:
+    get:
+      consumes:
+      - application/json
+      description: Unpause the current print job via web interface
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Printing unpaused
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Unpause printing (Web)
+      tags:
+      - Printer
+  /printer/upgrade:
+    get:
+      consumes:
+      - text/html
+      description: Display printer upgrade page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Upgrade page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get upgrade page
+      tags:
+      - Printer
+  /printer/upgrade/dsi/{version}:
+    get:
+      consumes:
+      - application/json
+      description: Upgrade HMI to specified version (Manufacturer access required)
+      parameters:
+      - description: Version to upgrade to
+        in: path
+        name: version
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: HMI upgrade started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upgrade HMI
+      tags:
+      - Printer
+  /printer/upgrade/go:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upgrade NanoDLP from offline file (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Offline upgrade started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upgrade NanoDLP offline
+      tags:
+      - Printer
+  /printer/upgrade/go/{version}:
+    get:
+      consumes:
+      - application/json
+      description: Upgrade NanoDLP to specified version (Manufacturer access required)
+      parameters:
+      - description: Version to upgrade to
+        in: path
+        name: version
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Upgrade started
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upgrade NanoDLP
+      tags:
+      - Printer
+  /printer/upgrade/info:
+    get:
+      consumes:
+      - application/json
+      description: Get available upgrade information (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Upgrade information
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get upgrade information
+      tags:
+      - Printer
+  /printer/upgrade/info/dsi/{version}:
+    get:
+      consumes:
+      - application/json
+      description: Get HMI upgrade information for specified version (Manufacturer
+        access required)
+      parameters:
+      - description: Version to check
+        in: path
+        name: version
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: HMI upgrade information
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get HMI upgrade information
+      tags:
+      - Printer
+  /printer/upload/klipper:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload Klipper firmware (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Klipper uploaded
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Upload Klipper
+      tags:
+      - Hardware
+  /printer/view/toggle:
+    get:
+      consumes:
+      - application/json
+      description: Toggle printer view mode (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: View mode toggled
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Toggle printer view mode
+      tags:
+      - Printer
+  /profile/add:
+    get:
+      consumes:
+      - text/html
+      description: Display profile addition page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Add profile page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Add profile page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add a new profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add profile
+      tags:
+      - Settings
+  /profile/clone/{CloneID}:
+    get:
+      consumes:
+      - text/html
+      description: Display profile cloning page
+      parameters:
+      - description: Profile ID to clone
+        in: path
+        name: CloneID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Clone profile page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Clone profile page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Clone an existing profile
+      parameters:
+      - description: Profile ID to clone
+        in: path
+        name: CloneID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile cloned
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Clone profile
+      tags:
+      - Settings
+  /profile/compare/{ProfileIDs}:
+    get:
+      consumes:
+      - text/html
+      description: Compare multiple profiles
+      parameters:
+      - description: Profile IDs to compare
+        in: path
+        name: ProfileIDs
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Profile comparison page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Compare profiles
+      tags:
+      - Settings
+  /profile/default/{ProfileID}:
+    get:
+      consumes:
+      - application/json
+      description: Set a profile as default
+      parameters:
+      - description: Profile ID to set as default
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Default profile set
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Set default profile
+      tags:
+      - Settings
+  /profile/delete/{ProfileID}:
+    get:
+      consumes:
+      - application/json
+      description: Delete a profile
+      parameters:
+      - description: Profile ID to delete
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile deleted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete profile
+      tags:
+      - Settings
+  /profile/edit/{ProfileID}:
+    get:
+      consumes:
+      - text/html
+      description: Display profile editing page
+      parameters:
+      - description: Profile ID to edit
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Edit profile page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Edit profile page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Edit an existing profile
+      parameters:
+      - description: Profile ID to edit
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile edited
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Edit profile
+      tags:
+      - Settings
+  /profile/edit/simple/{ProfileID}:
+    get:
+      consumes:
+      - text/html
+      description: Display simple profile editing page
+      parameters:
+      - description: Profile ID to edit
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Edit profile simple page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Edit profile simple page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Edit profile with simple interface
+      parameters:
+      - description: Profile ID to edit
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile edited
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Edit profile simple
+      tags:
+      - Settings
+  /profile/export/{ProfileID}:
+    get:
+      consumes:
+      - application/json
+      description: Export a profile
+      parameters:
+      - description: Profile ID to export
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Profile export
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Export profile
+      tags:
+      - Settings
+  /profile/fetch:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Fetch a profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile fetched
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Fetch profile
+      tags:
+      - Settings
+  /profile/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Import a profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile imported
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Import profile
+      tags:
+      - Settings
+  /profile/json/{ProfileID}:
+    get:
+      consumes:
+      - application/json
+      description: Get profile data as JSON
+      parameters:
+      - description: Profile ID
+        in: path
+        name: ProfileID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile data
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get profile JSON
+      tags:
+      - Settings
+  /profiles:
+    get:
+      consumes:
+      - text/html
+      description: Display profiles page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Profiles page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Profiles page
+      tags:
+      - Settings
+  /projector-calibration:
+    get:
+      consumes:
+      - text/html
+      description: Display projector calibration page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Projector calibration page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Projector calibration page
+      tags:
+      - Display
+  /projector/blank:
+    get:
+      consumes:
+      - application/json
+      description: Blank the projector display
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Projector blanked
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Blank projector
+      tags:
+      - Display
+  /projector/display/{image}:
+    get:
+      consumes:
+      - application/json
+      description: Display an image on the projector
+      parameters:
+      - description: Image name
+        in: path
+        name: image
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Image displayed
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Display projector image
+      tags:
+      - Display
+  /projector/generate/{image}:
+    get:
+      consumes:
+      - application/json
+      description: Generate an image for projector display
+      parameters:
+      - description: Image name
+        in: path
+        name: image
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Image generated
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Generate projector image
+      tags:
+      - Display
+    post:
+      consumes:
+      - application/json
+      description: Generate an image for projector display
+      parameters:
+      - description: Image name
+        in: path
+        name: image
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Image generated
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Generate projector image
+      tags:
+      - Display
+  /projector/lamp:
+    get:
+      consumes:
+      - application/json
+      description: Get projector lamp usage time
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Lamp time
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get projector lamp time
+      tags:
+      - Display
+  /projector/off:
+    get:
+      consumes:
+      - application/json
+      description: Turn off the projector
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Projector turned off
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Turn off projector
+      tags:
+      - Display
+  /projector/on:
+    get:
+      consumes:
+      - application/json
+      description: Turn on the projector
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Projector turned on
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Turn on projector
+      tags:
+      - Display
+  /ramps/reconnect:
+    get:
+      consumes:
+      - application/json
+      description: Reconnect to RAMPS board
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: RAMPS reconnected
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Reconnect RAMPS
+      tags:
+      - Hardware
+  /setup:
+    get:
+      consumes:
+      - text/html
+      description: Display setup configuration page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Setup page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Setup page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save setup configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Setup saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save setup
+      tags:
+      - Settings
+  /setup/custom-buttons:
+    get:
+      consumes:
+      - text/html
+      description: Display custom buttons page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Custom buttons page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Custom buttons page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save custom buttons configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Custom buttons saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save custom buttons
+      tags:
+      - Settings
+  /setup/custom-consumables:
+    get:
+      consumes:
+      - text/html
+      description: Display custom consumables page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Custom consumables page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Custom consumables page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save custom consumables configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Custom consumables saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save custom consumables
+      tags:
+      - Settings
+  /setup/custom-consumables/reset/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Reset consumable counter (Manufacturer access required)
+      parameters:
+      - description: Consumable name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Consumable reset
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Reset consumable
+      tags:
+      - Settings
+  /setup/custom-input/get/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Get custom input value (Manufacturer access required)
+      parameters:
+      - description: Input name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Custom input value
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get custom input
+      tags:
+      - Settings
+  /setup/custom-input/set/{name}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Set custom input value (Manufacturer access required)
+      parameters:
+      - description: Input name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Custom input set
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Set custom input
+      tags:
+      - Settings
+  /setup/custom-inputs:
+    get:
+      consumes:
+      - text/html
+      description: Display custom inputs page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Custom inputs page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Custom inputs page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save custom inputs configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Custom inputs saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save custom inputs
+      tags:
+      - Settings
+  /setup/custom-sound:
+    get:
+      consumes:
+      - text/html
+      description: Display custom sound page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Custom sound page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Custom sound page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save custom sound configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Custom sound saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save custom sound
+      tags:
+      - Settings
+  /setup/export:
+    get:
+      consumes:
+      - application/json
+      description: Export setup configuration (Manufacturer access required)
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Setup export
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Export setup
+      tags:
+      - Settings
+  /setup/export/nanosupport:
+    get:
+      consumes:
+      - application/json
+      description: Export nano support configuration (Manufacturer access required)
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Nano support export
+          schema:
+            type: file
+      security:
+      - BearerAuth: []
+      summary: Export nano support
+      tags:
+      - Settings
+  /setup/fetch:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Fetch setup configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Setup fetched
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Fetch setup
+      tags:
+      - Settings
+  /setup/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Import setup configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Setup imported
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Import setup
+      tags:
+      - Settings
+  /setup/timezone:
+    get:
+      consumes:
+      - text/html
+      description: Display timezone configuration page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Timezone page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Timezone page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save timezone configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Timezone saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save timezone
+      tags:
+      - Settings
+  /setup/wifi/country:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Save WiFi country configuration (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WiFi country saved
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Save WiFi country
+      tags:
+      - Settings
+  /shutter/close:
+    get:
+      consumes:
+      - application/json
+      description: Close the shutter
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Shutter closed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Close shutter
+      tags:
+      - Display
+  /shutter/open:
+    get:
+      consumes:
+      - application/json
+      description: Open the shutter
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Shutter opened
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Open shutter
+      tags:
+      - Display
+  /slicer:
+    get:
+      consumes:
+      - application/json
+      description: Get current slicer status and information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Slicer status
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get slicer status
+      tags:
+      - Slicing
+    post:
+      consumes:
+      - application/json
+      description: Handle remote slicer host requests
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Remote slicer response
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Remote slicer host
+      tags:
+      - Slicing
+  /slicer/cancel:
+    get:
+      consumes:
+      - application/json
+      description: Cancel the current slicing operation
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Slicing cancelled
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Cancel slicing
+      tags:
+      - Slicing
+  /stat:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve system performance statistics
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: System statistics
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get system statistics
+      tags:
+      - Printer
+  /support:
+    get:
+      consumes:
+      - text/html
+      description: Display support page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Support page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get support page
+      tags:
+      - Settings
+    post:
+      consumes:
+      - application/json
+      description: Submit a support request (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Support request submitted
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Submit support request
+      tags:
+      - Settings
+  /term:
+    get:
+      consumes:
+      - text/html
+      description: Display terminal interface page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Terminal page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Terminal page
+      tags:
+      - Hardware
+  /term-io:
+    get:
+      consumes:
+      - application/json
+      description: Get terminal data stream
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Terminal data
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Terminal data
+      tags:
+      - Hardware
+    post:
+      consumes:
+      - multipart/form-data
+      description: Send manual G-code command
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: G-code sent
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Send G-code
+      tags:
+      - Hardware
+  /tools:
+    get:
+      consumes:
+      - text/html
+      description: Display tools page (Manufacturer access required)
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Tools page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get tools page
+      tags:
+      - Settings
+  /usb/preview/{file}:
+    get:
+      consumes:
+      - text/html
+      description: Preview a USB file
+      parameters:
+      - description: File name
+        in: path
+        name: file
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: USB file preview
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Preview USB file
+      tags:
+      - Hardware
+  /wifi:
+    get:
+      consumes:
+      - text/html
+      description: Display WiFi configuration page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: WiFi page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: WiFi page
+      tags:
+      - Hardware
+  /wifi/{details}:
+    get:
+      consumes:
+      - text/html
+      description: Display WiFi configuration page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: WiFi page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: WiFi page
+      tags:
+      - Hardware
+  /wifi/connect:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Connect to a WiFi network
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: WiFi connected
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Connect WiFi
+      tags:
+      - Hardware
+  /z-axis/bottom:
+    get:
+      consumes:
+      - application/json
+      description: Move Z-axis to bottom position
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis moved to bottom
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Move Z-axis to bottom
+      tags:
+      - Hardware
+  /z-axis/calibrate:
+    get:
+      consumes:
+      - application/json
+      description: Perform Z-axis calibration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis calibrated
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Calibrate Z-axis
+      tags:
+      - Hardware
+  /z-axis/enable/{mode}:
+    get:
+      consumes:
+      - application/json
+      description: Change Z-axis enable pin mode
+      parameters:
+      - description: Enable mode
+        in: path
+        name: mode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Enable mode changed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change enable pin mode
+      tags:
+      - Hardware
+  /z-axis/info:
+    get:
+      consumes:
+      - application/json
+      description: Get Z-axis information and status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis information
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get Z-axis info
+      tags:
+      - Hardware
+  /z-axis/move/{direction}/{type}/{amount}:
+    get:
+      consumes:
+      - application/json
+      description: Move Z-axis in specified direction and amount
+      parameters:
+      - description: Movement direction
+        in: path
+        name: direction
+        required: true
+        type: string
+      - description: Movement type
+        in: path
+        name: type
+        required: true
+        type: string
+      - description: Movement amount
+        in: path
+        name: amount
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis moved
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Move Z-axis
+      tags:
+      - Hardware
+  /z-axis/record-height:
+    get:
+      consumes:
+      - application/json
+      description: Record current Z-axis height (Admin access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Height recorded
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Record Z-axis height
+      tags:
+      - Hardware
+  /z-axis/top:
+    get:
+      consumes:
+      - application/json
+      description: Move Z-axis to top position
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis moved to top
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Move Z-axis to top
+      tags:
+      - Hardware
+  /z-axis/touch-limit:
+    get:
+      consumes:
+      - application/json
+      description: Touch Z-axis limit switch
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis limit touched
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Touch Z-axis limit
+      tags:
+      - Hardware
+  /z-calibration:
+    get:
+      consumes:
+      - text/html
+      description: Display Z-axis calibration page
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: Z-axis calibration page
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Z-axis calibration page
+      tags:
+      - Hardware
+    post:
+      consumes:
+      - application/json
+      description: Move Z-axis to a specific layer for calibration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Z-axis moved to layer
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Move Z-axis to layer
+      tags:
+      - Hardware
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: Enter the token with the `Bearer ` prefix, e.g. "Bearer abcde12345"
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
