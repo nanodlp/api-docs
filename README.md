@@ -21,7 +21,7 @@ The documentation covers **231+ API endpoints** across all modules:
 ### Option 1: Online Swagger Editor (Recommended)
 1. Go to [https://editor.swagger.io/](https://editor.swagger.io/)
 2. Click "File" → "Import File"
-3. Upload `docs/swagger.json` or `docs/swagger.yaml`
+3. Upload `swagger.json` or `swagger.yaml`
 4. Explore the interactive API documentation
 
 ### Option 2: Local Swagger UI
@@ -30,7 +30,7 @@ The documentation covers **231+ API endpoints** across all modules:
 go install github.com/swaggo/swag/cmd/swag@latest
 
 # Serve documentation locally
-swag serve -F swagger docs/swagger.json
+swag serve -F swagger swagger.json
 ```
 Then open [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
 
@@ -40,13 +40,13 @@ Then open [http://localhost:8080/swagger/index.html](http://localhost:8080/swagg
 npm install -g redoc-cli
 
 # Generate and serve Redoc documentation
-redoc-cli serve docs/swagger.json
+redoc-cli serve swagger.json
 ```
 Then open [http://localhost:8080](http://localhost:8080)
 
 ### Option 4: VS Code Extension
 1. Install "OpenAPI (Swagger) Editor" extension
-2. Open `docs/swagger.json` or `docs/swagger.yaml`
+2. Open `swagger.json` or `swagger.yaml`
 3. Use the built-in preview feature
 
 ## 📊 API Statistics
