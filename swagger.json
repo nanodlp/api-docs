@@ -61,6 +61,29 @@
                     "Authentication"
                 ],
                 "summary": "Change password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Current password",
+                        "name": "currentPassword",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "New password",
+                        "name": "newPassword",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Confirm new password",
+                        "name": "confirmPassword",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Password changed",
@@ -346,6 +369,622 @@
                 "responses": {
                     "200": {
                         "description": "Analytics value",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/branchradius": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Calculate optimal branch radius for support structures",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Calculate branch radius",
+                "responses": {
+                    "200": {
+                        "description": "Branch radius calculated",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/cancel/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Cancel a casting task by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Cancel task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task cancelled",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/chain": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create chain structure for casting",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Create chain",
+                "responses": {
+                    "200": {
+                        "description": "Chain created",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/export": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Export casting data in specified format",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Export casting data",
+                "responses": {
+                    "200": {
+                        "description": "Data exported",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/internal": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Generate internal support structures for casting",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Internal support",
+                "responses": {
+                    "200": {
+                        "description": "Internal support generated",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/parsestl": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Parse STL file for casting applications",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Parse STL for casting",
+                "responses": {
+                    "200": {
+                        "description": "STL parsed for casting",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/progress/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get progress of a casting task by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get task progress",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task progress",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/result/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get result of a casting task by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get task result",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task result",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/support": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Generate support tree structure for casting",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Create casting support tree",
+                "responses": {
+                    "200": {
+                        "description": "Support tree created",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/support/result/connection": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get connection information for support structures",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get support connections",
+                "responses": {
+                    "200": {
+                        "description": "Support connections",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/support/result/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get result of support tree generation by task ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get support tree result",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Support tree result",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/supportvolume": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Calculate support structure volume",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get support volume",
+                "responses": {
+                    "200": {
+                        "description": "Support volume",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/tree": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Pack rest elements for casting optimization",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Pack rest for casting",
+                "responses": {
+                    "200": {
+                        "description": "Rest packed",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/treenumbers": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get count information for tree structures",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get tree numbers",
+                "responses": {
+                    "200": {
+                        "description": "Tree numbers",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/treevolumes": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get volume information for tree structures",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Get tree volumes",
+                "responses": {
+                    "200": {
+                        "description": "Tree volumes",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/casting/v1/volume": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Calculate volume of casting objects",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casting"
+                ],
+                "summary": "Calculate volume",
+                "responses": {
+                    "200": {
+                        "description": "Volume calculated",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dental/v1/parse/stl": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Parse STL file for dental applications",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dental"
+                ],
+                "summary": "Parse STL for dental",
+                "responses": {
+                    "200": {
+                        "description": "STL parsed for dental",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dental/v1/process": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Process dental data for specific applications",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dental"
+                ],
+                "summary": "Process dental data",
+                "responses": {
+                    "200": {
+                        "description": "Data processed",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dental/v1/shape": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Classify dental shape from mesh data",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dental"
+                ],
+                "summary": "Classify dental shape",
+                "responses": {
+                    "200": {
+                        "description": "Shape classified",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/editor/v1/add/mesh": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Add new mesh with generated UUID",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Add mesh with new UUID",
+                "responses": {
+                    "200": {
+                        "description": "Mesh added",
                         "schema": {
                             "type": "object",
                             "additionalProperties": true
@@ -683,6 +1322,35 @@
                 "responses": {
                     "200": {
                         "description": "Editor installed",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/editor/v1/islands": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Detect islands in the mesh",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Detect islands",
+                "responses": {
+                    "200": {
+                        "description": "Islands detected",
                         "schema": {
                             "type": "object",
                             "additionalProperties": true
@@ -1415,6 +2083,35 @@
                 }
             }
         },
+        "/api/editor/v1/serve/mesh": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Serve mesh data using UUID",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Serve mesh by UUID",
+                "responses": {
+                    "200": {
+                        "description": "Mesh served",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/api/editor/v1/serve/stl/{file}": {
             "post": {
                 "security": [
@@ -1569,6 +2266,35 @@
                 }
             }
         },
+        "/api/editor/v1/update/mesh": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update mesh data using UUID",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Editor"
+                ],
+                "summary": "Update mesh by UUID",
+                "responses": {
+                    "200": {
+                        "description": "Mesh updated",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/api/editor/v1/upgrade/go/{version}": {
             "get": {
                 "security": [
@@ -1710,6 +2436,35 @@
                 }
             }
         },
+        "/api/rhino/v1/hollowing": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Perform hollowing operation using Rhino integration",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rhino"
+                ],
+                "summary": "Rhino hollowing",
+                "responses": {
+                    "200": {
+                        "description": "Hollowing completed",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/athena/calibration/add/{calibrationFile}": {
             "post": {
                 "security": [
@@ -1834,6 +2589,69 @@
                     "Slicing"
                 ],
                 "summary": "Add job (REST)",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "STL or other 3D model file to upload",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Job name (optional, defaults to filename)",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Profile ID to use for slicing",
+                        "name": "profileID",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X position on plate (mm)",
+                        "name": "x",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y position on plate (mm)",
+                        "name": "y",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z position on plate (mm)",
+                        "name": "z",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rotation angle (degrees)",
+                        "name": "rotate",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Scale factor (1.0 = original size)",
+                        "name": "scale",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Generate supports (true/false)",
+                        "name": "support",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Create hollow model (true/false)",
+                        "name": "hollow",
+                        "in": "formData"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Job added",
@@ -2534,6 +3352,34 @@
                 }
             }
         },
+        "/debug/sampling": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Toggle debug sampling to collect stack traces and memory usage samples (Manufacturer access required)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Debug"
+                ],
+                "summary": "Toggle debug sampling",
+                "responses": {
+                    "200": {
+                        "description": "Debug sampling toggled successfully",
+                        "schema": {
+                            "$ref": "#/definitions/web.SuccessResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/debug/send": {
             "get": {
                 "description": "Send debug information to remote server (Demo mode not allowed)",
@@ -2550,6 +3396,34 @@
                 "responses": {
                     "302": {
                         "description": "Redirect to home",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/debug/stack": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Show current stack traces",
+                "consumes": [
+                    "text/plain"
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Debug"
+                ],
+                "summary": "Show current stack",
+                "responses": {
+                    "200": {
+                        "description": "Current stack traces",
                         "schema": {
                             "type": "string"
                         }
@@ -3203,6 +4077,28 @@
                     "Authentication"
                 ],
                 "summary": "Submit login",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Password",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Remember login",
+                        "name": "remember",
+                        "in": "formData"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Login result",
@@ -3248,6 +4144,28 @@
                     "Authentication"
                 ],
                 "summary": "Submit manufacturer login",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Manufacturer username",
+                        "name": "username",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Manufacturer password",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Remember login",
+                        "name": "remember",
+                        "in": "formData"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Manufacturer login result",
@@ -3460,35 +4378,6 @@
                 }
             }
         },
-        "/oem-lock": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Change OEM lock settings (Admin access required)",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Authentication"
-                ],
-                "summary": "Change OEM lock",
-                "responses": {
-                    "200": {
-                        "description": "OEM lock changed",
-                        "schema": {
-                            "type": "object",
-                            "additionalProperties": true
-                        }
-                    }
-                }
-            }
-        },
         "/online-access": {
             "post": {
                 "security": [
@@ -3601,6 +4490,69 @@
                     "Slicing"
                 ],
                 "summary": "Add job (Web)",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "STL or other 3D model file to upload",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Job name (optional, defaults to filename)",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Profile ID to use for slicing",
+                        "name": "profileID",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X position on plate (mm)",
+                        "name": "x",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y position on plate (mm)",
+                        "name": "y",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z position on plate (mm)",
+                        "name": "z",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rotation angle (degrees)",
+                        "name": "rotate",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Scale factor (1.0 = original size)",
+                        "name": "scale",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Generate supports (true/false)",
+                        "name": "support",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Create hollow model (true/false)",
+                        "name": "hollow",
+                        "in": "formData"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Job added",
@@ -5965,6 +6917,375 @@
                     "Settings"
                 ],
                 "summary": "Add profile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Profile name",
+                        "name": "Name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Profile description",
+                        "name": "Description",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis size in mm",
+                        "name": "ZSize",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis resolution in pixels",
+                        "name": "XResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis resolution in pixels",
+                        "name": "YResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis pixel size in microns",
+                        "name": "PixelSizeX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis pixel size in microns",
+                        "name": "PixelSizeY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip X-axis",
+                        "name": "FlipX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip Y-axis",
+                        "name": "FlipY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Anti-aliasing level (0-4)",
+                        "name": "AntiAliasing",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Gantry height in mm",
+                        "name": "GantryHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis offset in mm",
+                        "name": "ZOffset",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height in mm",
+                        "name": "LiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift speed in mm/min",
+                        "name": "LiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Peel speed in mm/min",
+                        "name": "PeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis speed in mm/min",
+                        "name": "ZSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Number of bottom layers",
+                        "name": "BottomLayers",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light off delay in seconds",
+                        "name": "BottomLightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift height in mm",
+                        "name": "BottomLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift speed in mm/min",
+                        "name": "BottomLiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer peel speed in mm/min",
+                        "name": "BottomPeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light time in seconds",
+                        "name": "BottomLightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light off delay in seconds",
+                        "name": "LightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light on delay in seconds",
+                        "name": "LightOnDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Normal layer light time in seconds",
+                        "name": "LightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Retract speed in mm/min",
+                        "name": "RetractSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time before lift in seconds",
+                        "name": "RestBeforeLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after lift in seconds",
+                        "name": "RestAfterLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after peel in seconds",
+                        "name": "RestAfterPeel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for X-axis in seconds",
+                        "name": "MotorDelayX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Y-axis in seconds",
+                        "name": "MotorDelayY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Z-axis in seconds",
+                        "name": "MotorDelayZ",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt height in degrees",
+                        "name": "TiltHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt speed in degrees/min",
+                        "name": "TiltSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis acceleration in mm/s²",
+                        "name": "ZAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "XY-axis acceleration in mm/s²",
+                        "name": "XYAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Minimum exposure time in seconds",
+                        "name": "MinExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Maximum exposure time in seconds",
+                        "name": "MaxExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Printer model",
+                        "name": "PrinterModel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable screen LED",
+                        "name": "ScreenLED",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Fan GPIO pin",
+                        "name": "FanPin",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan speed (0-100)",
+                        "name": "FanSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn on fan",
+                        "name": "FanOnTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn off fan",
+                        "name": "FanOffTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to turn on fan",
+                        "name": "FanOnLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to turn on fan",
+                        "name": "FanOnAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to turn on fan",
+                        "name": "FanOnAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan duration in seconds",
+                        "name": "FanDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan delay in seconds",
+                        "name": "FanDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Projector type",
+                        "name": "ProjectorType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display type",
+                        "name": "DisplayType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display path",
+                        "name": "DisplayPath",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Rotate display",
+                        "name": "DisplayRotate",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display width in pixels",
+                        "name": "DisplayWidth",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display height in pixels",
+                        "name": "DisplayHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display X offset",
+                        "name": "DisplayOffsetX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display Y offset",
+                        "name": "DisplayOffsetY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display gamma correction",
+                        "name": "DisplayGamma",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display brightness (0-100)",
+                        "name": "DisplayBrightness",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display contrast (0-100)",
+                        "name": "DisplayContrast",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable display backlight",
+                        "name": "DisplayBacklight",
+                        "in": "formData"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Profile added",
@@ -6295,6 +7616,372 @@
                         "name": "ProfileID",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Profile name",
+                        "name": "Name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Profile description",
+                        "name": "Description",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis size in mm",
+                        "name": "ZSize",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis resolution in pixels",
+                        "name": "XResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis resolution in pixels",
+                        "name": "YResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis pixel size in microns",
+                        "name": "PixelSizeX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis pixel size in microns",
+                        "name": "PixelSizeY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip X-axis",
+                        "name": "FlipX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip Y-axis",
+                        "name": "FlipY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Anti-aliasing level (0-4)",
+                        "name": "AntiAliasing",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Gantry height in mm",
+                        "name": "GantryHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis offset in mm",
+                        "name": "ZOffset",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height in mm",
+                        "name": "LiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift speed in mm/min",
+                        "name": "LiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Peel speed in mm/min",
+                        "name": "PeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis speed in mm/min",
+                        "name": "ZSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Number of bottom layers",
+                        "name": "BottomLayers",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light off delay in seconds",
+                        "name": "BottomLightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift height in mm",
+                        "name": "BottomLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift speed in mm/min",
+                        "name": "BottomLiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer peel speed in mm/min",
+                        "name": "BottomPeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light time in seconds",
+                        "name": "BottomLightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light off delay in seconds",
+                        "name": "LightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light on delay in seconds",
+                        "name": "LightOnDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Normal layer light time in seconds",
+                        "name": "LightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Retract speed in mm/min",
+                        "name": "RetractSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time before lift in seconds",
+                        "name": "RestBeforeLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after lift in seconds",
+                        "name": "RestAfterLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after peel in seconds",
+                        "name": "RestAfterPeel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for X-axis in seconds",
+                        "name": "MotorDelayX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Y-axis in seconds",
+                        "name": "MotorDelayY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Z-axis in seconds",
+                        "name": "MotorDelayZ",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt height in degrees",
+                        "name": "TiltHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt speed in degrees/min",
+                        "name": "TiltSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis acceleration in mm/s²",
+                        "name": "ZAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "XY-axis acceleration in mm/s²",
+                        "name": "XYAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Minimum exposure time in seconds",
+                        "name": "MinExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Maximum exposure time in seconds",
+                        "name": "MaxExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Printer model",
+                        "name": "PrinterModel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable screen LED",
+                        "name": "ScreenLED",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Fan GPIO pin",
+                        "name": "FanPin",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan speed (0-100)",
+                        "name": "FanSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn on fan",
+                        "name": "FanOnTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn off fan",
+                        "name": "FanOffTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to turn on fan",
+                        "name": "FanOnLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to turn on fan",
+                        "name": "FanOnAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to turn on fan",
+                        "name": "FanOnAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan duration in seconds",
+                        "name": "FanDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan delay in seconds",
+                        "name": "FanDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Projector type",
+                        "name": "ProjectorType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display type",
+                        "name": "DisplayType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display path",
+                        "name": "DisplayPath",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Rotate display",
+                        "name": "DisplayRotate",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display width in pixels",
+                        "name": "DisplayWidth",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display height in pixels",
+                        "name": "DisplayHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display X offset",
+                        "name": "DisplayOffsetX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display Y offset",
+                        "name": "DisplayOffsetY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display gamma correction",
+                        "name": "DisplayGamma",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display brightness (0-100)",
+                        "name": "DisplayBrightness",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display contrast (0-100)",
+                        "name": "DisplayContrast",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable display backlight",
+                        "name": "DisplayBacklight",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -6773,6 +8460,476 @@
                     "Settings"
                 ],
                 "summary": "Save setup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Printer name",
+                        "name": "Name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis size in mm",
+                        "name": "ZSize",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis resolution in pixels",
+                        "name": "XResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis resolution in pixels",
+                        "name": "YResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis pixel size in microns",
+                        "name": "PixelSizeX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis pixel size in microns",
+                        "name": "PixelSizeY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip X-axis",
+                        "name": "FlipX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip Y-axis",
+                        "name": "FlipY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Anti-aliasing level (0-4)",
+                        "name": "AntiAliasing",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Gantry height in mm",
+                        "name": "GantryHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis offset in mm",
+                        "name": "ZOffset",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height in mm",
+                        "name": "LiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift speed in mm/min",
+                        "name": "LiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Peel speed in mm/min",
+                        "name": "PeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis speed in mm/min",
+                        "name": "ZSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Number of bottom layers",
+                        "name": "BottomLayers",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light off delay in seconds",
+                        "name": "BottomLightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift height in mm",
+                        "name": "BottomLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift speed in mm/min",
+                        "name": "BottomLiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer peel speed in mm/min",
+                        "name": "BottomPeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light time in seconds",
+                        "name": "BottomLightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light off delay in seconds",
+                        "name": "LightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light on delay in seconds",
+                        "name": "LightOnDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Normal layer light time in seconds",
+                        "name": "LightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Retract speed in mm/min",
+                        "name": "RetractSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time before lift in seconds",
+                        "name": "RestBeforeLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after lift in seconds",
+                        "name": "RestAfterLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after peel in seconds",
+                        "name": "RestAfterPeel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for X-axis in seconds",
+                        "name": "MotorDelayX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Y-axis in seconds",
+                        "name": "MotorDelayY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Z-axis in seconds",
+                        "name": "MotorDelayZ",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt height in degrees",
+                        "name": "TiltHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt speed in degrees/min",
+                        "name": "TiltSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis acceleration in mm/s²",
+                        "name": "ZAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "XY-axis acceleration in mm/s²",
+                        "name": "XYAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Minimum exposure time in seconds",
+                        "name": "MinExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Maximum exposure time in seconds",
+                        "name": "MaxExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Printer model",
+                        "name": "PrinterModel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable screen LED",
+                        "name": "ScreenLED",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Fan GPIO pin",
+                        "name": "FanPin",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan speed (0-100)",
+                        "name": "FanSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn on fan",
+                        "name": "FanOnTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn off fan",
+                        "name": "FanOffTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to turn on fan",
+                        "name": "FanOnLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to turn on fan",
+                        "name": "FanOnAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to turn on fan",
+                        "name": "FanOnAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan duration in seconds",
+                        "name": "FanDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan delay in seconds",
+                        "name": "FanDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Projector type",
+                        "name": "ProjectorType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display type",
+                        "name": "DisplayType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display path",
+                        "name": "DisplayPath",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Rotate display",
+                        "name": "DisplayRotate",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display width in pixels",
+                        "name": "DisplayWidth",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display height in pixels",
+                        "name": "DisplayHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display X offset",
+                        "name": "DisplayOffsetX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display Y offset",
+                        "name": "DisplayOffsetY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display gamma correction",
+                        "name": "DisplayGamma",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display brightness (0-100)",
+                        "name": "DisplayBrightness",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display contrast (0-100)",
+                        "name": "DisplayContrast",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable display backlight",
+                        "name": "DisplayBacklight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power off delay in seconds",
+                        "name": "DisplayPowerOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power on delay in seconds",
+                        "name": "DisplayPowerOnDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to turn off display",
+                        "name": "DisplayPowerOffLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to turn off display",
+                        "name": "DisplayPowerOffAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to turn off display",
+                        "name": "DisplayPowerOffAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power off duration in seconds",
+                        "name": "DisplayPowerOffDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power off delay in seconds",
+                        "name": "DisplayPowerOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to turn on display",
+                        "name": "DisplayPowerOnLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to turn on display",
+                        "name": "DisplayPowerOnAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to turn on display",
+                        "name": "DisplayPowerOnAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power on duration in seconds",
+                        "name": "DisplayPowerOnDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power on delay in seconds",
+                        "name": "DisplayPowerOnDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to toggle display",
+                        "name": "DisplayPowerToggleLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to toggle display",
+                        "name": "DisplayPowerToggleAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to toggle display",
+                        "name": "DisplayPowerToggleAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power toggle duration in seconds",
+                        "name": "DisplayPowerToggleDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display power toggle delay in seconds",
+                        "name": "DisplayPowerToggleDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Update custom input values",
+                        "name": "UpdateCustomInput",
+                        "in": "formData"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Setup saved",
@@ -8041,6 +10198,28 @@
                         "schema": {
                             "type": "object",
                             "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "web.SuccessResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "description": "in:body",
+                    "type": "object",
+                    "properties": {
+                        "data": {},
+                        "message": {
+                            "type": "string",
+                            "example": "Operation completed successfully"
+                        },
+                        "success": {
+                            "type": "boolean",
+                            "example": true
                         }
                     }
                 }

@@ -1,4 +1,19 @@
 basePath: /
+definitions:
+  web.SuccessResponse:
+    properties:
+      body:
+        description: in:body
+        properties:
+          data: {}
+          message:
+            example: Operation completed successfully
+            type: string
+          success:
+            example: true
+            type: boolean
+        type: object
+    type: object
 host: localhost:8080
 info:
   contact:
@@ -32,6 +47,22 @@ paths:
       consumes:
       - multipart/form-data
       description: Change system password (Admin access required)
+      parameters:
+      - description: Current password
+        in: formData
+        name: currentPassword
+        required: true
+        type: string
+      - description: New password
+        in: formData
+        name: newPassword
+        required: true
+        type: string
+      - description: Confirm new password
+        in: formData
+        name: confirmPassword
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -230,6 +261,390 @@ paths:
       summary: Get analytics value
       tags:
       - Analytics
+  /api/casting/v1/branchradius:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Calculate optimal branch radius for support structures
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Branch radius calculated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Calculate branch radius
+      tags:
+      - Casting
+  /api/casting/v1/cancel/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Cancel a casting task by ID
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task cancelled
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Cancel task
+      tags:
+      - Casting
+  /api/casting/v1/chain:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create chain structure for casting
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Chain created
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create chain
+      tags:
+      - Casting
+  /api/casting/v1/export:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Export casting data in specified format
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Data exported
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Export casting data
+      tags:
+      - Casting
+  /api/casting/v1/internal:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate internal support structures for casting
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Internal support generated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Internal support
+      tags:
+      - Casting
+  /api/casting/v1/parsestl:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Parse STL file for casting applications
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: STL parsed for casting
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Parse STL for casting
+      tags:
+      - Casting
+  /api/casting/v1/progress/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get progress of a casting task by ID
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task progress
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get task progress
+      tags:
+      - Casting
+  /api/casting/v1/result/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get result of a casting task by ID
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task result
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get task result
+      tags:
+      - Casting
+  /api/casting/v1/support:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Generate support tree structure for casting
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Support tree created
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create casting support tree
+      tags:
+      - Casting
+  /api/casting/v1/support/result/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get result of support tree generation by task ID
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Support tree result
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get support tree result
+      tags:
+      - Casting
+  /api/casting/v1/support/result/connection:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Get connection information for support structures
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Support connections
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get support connections
+      tags:
+      - Casting
+  /api/casting/v1/supportvolume:
+    get:
+      consumes:
+      - application/json
+      description: Calculate support structure volume
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Support volume
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get support volume
+      tags:
+      - Casting
+  /api/casting/v1/tree:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Pack rest elements for casting optimization
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Rest packed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Pack rest for casting
+      tags:
+      - Casting
+  /api/casting/v1/treenumbers:
+    get:
+      consumes:
+      - application/json
+      description: Get count information for tree structures
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Tree numbers
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get tree numbers
+      tags:
+      - Casting
+  /api/casting/v1/treevolumes:
+    get:
+      consumes:
+      - application/json
+      description: Get volume information for tree structures
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Tree volumes
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get tree volumes
+      tags:
+      - Casting
+  /api/casting/v1/volume:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Calculate volume of casting objects
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Volume calculated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Calculate volume
+      tags:
+      - Casting
+  /api/dental/v1/parse/stl:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Parse STL file for dental applications
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: STL parsed for dental
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Parse STL for dental
+      tags:
+      - Dental
+  /api/dental/v1/process:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Process dental data for specific applications
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Data processed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Process dental data
+      tags:
+      - Dental
+  /api/dental/v1/shape:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Classify dental shape from mesh data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Shape classified
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Classify dental shape
+      tags:
+      - Dental
+  /api/editor/v1/add/mesh:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Add new mesh with generated UUID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh added
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Add mesh with new UUID
+      tags:
+      - Editor
   /api/editor/v1/baseplate:
     post:
       consumes:
@@ -438,6 +853,24 @@ paths:
       security:
       - BearerAuth: []
       summary: Install editor
+      tags:
+      - Editor
+  /api/editor/v1/islands:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Detect islands in the mesh
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Islands detected
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Detect islands
       tags:
       - Editor
   /api/editor/v1/mesh/get/{UUID}:
@@ -895,6 +1328,24 @@ paths:
       summary: Repair mesh
       tags:
       - Editor
+  /api/editor/v1/serve/mesh:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Serve mesh data using UUID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh served
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Serve mesh by UUID
+      tags:
+      - Editor
   /api/editor/v1/serve/stl/{file}:
     post:
       consumes:
@@ -991,6 +1442,24 @@ paths:
       summary: Generate tree support
       tags:
       - Editor
+  /api/editor/v1/update/mesh:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Update mesh data using UUID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mesh updated
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Update mesh by UUID
+      tags:
+      - Editor
   /api/editor/v1/upgrade/go/{version}:
     get:
       consumes:
@@ -1081,6 +1550,24 @@ paths:
       summary: Get upgrade status
       tags:
       - Editor
+  /api/rhino/v1/hollowing:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Perform hollowing operation using Rhino integration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Hollowing completed
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Rhino hollowing
+      tags:
+      - Rhino
   /api/v1/athena/calibration/add/{calibrationFile}:
     post:
       consumes:
@@ -1155,6 +1642,48 @@ paths:
       consumes:
       - multipart/form-data
       description: Add a new print job via REST API
+      parameters:
+      - description: STL or other 3D model file to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: Job name (optional, defaults to filename)
+        in: formData
+        name: name
+        type: string
+      - description: Profile ID to use for slicing
+        in: formData
+        name: profileID
+        type: number
+      - description: X position on plate (mm)
+        in: formData
+        name: x
+        type: number
+      - description: Y position on plate (mm)
+        in: formData
+        name: "y"
+        type: number
+      - description: Z position on plate (mm)
+        in: formData
+        name: z
+        type: number
+      - description: Rotation angle (degrees)
+        in: formData
+        name: rotate
+        type: number
+      - description: Scale factor (1.0 = original size)
+        in: formData
+        name: scale
+        type: number
+      - description: Generate supports (true/false)
+        in: formData
+        name: support
+        type: boolean
+      - description: Create hollow model (true/false)
+        in: formData
+        name: hollow
+        type: boolean
       produces:
       - application/json
       responses:
@@ -1611,6 +2140,24 @@ paths:
       summary: Collect performance profile
       tags:
       - Debug
+  /debug/sampling:
+    get:
+      consumes:
+      - application/json
+      description: Toggle debug sampling to collect stack traces and memory usage
+        samples (Manufacturer access required)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Debug sampling toggled successfully
+          schema:
+            $ref: '#/definitions/web.SuccessResponse'
+      security:
+      - BearerAuth: []
+      summary: Toggle debug sampling
+      tags:
+      - Debug
   /debug/send:
     get:
       consumes:
@@ -1624,6 +2171,23 @@ paths:
           schema:
             type: string
       summary: Send debug information
+      tags:
+      - Debug
+  /debug/stack:
+    get:
+      consumes:
+      - text/plain
+      description: Show current stack traces
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: Current stack traces
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Show current stack
       tags:
       - Debug
   /debug/verbose:
@@ -2034,6 +2598,21 @@ paths:
       consumes:
       - multipart/form-data
       description: Submit login credentials
+      parameters:
+      - description: Username
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: Password
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: Remember login
+        in: formData
+        name: remember
+        type: boolean
       produces:
       - application/json
       responses:
@@ -2064,6 +2643,21 @@ paths:
       consumes:
       - multipart/form-data
       description: Submit manufacturer login credentials
+      parameters:
+      - description: Manufacturer username
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: Manufacturer password
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: Remember login
+        in: formData
+        name: remember
+        type: boolean
       produces:
       - application/json
       responses:
@@ -2203,24 +2797,6 @@ paths:
       summary: Disable notification
       tags:
       - Printer
-  /oem-lock:
-    post:
-      consumes:
-      - multipart/form-data
-      description: Change OEM lock settings (Admin access required)
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OEM lock changed
-          schema:
-            additionalProperties: true
-            type: object
-      security:
-      - BearerAuth: []
-      summary: Change OEM lock
-      tags:
-      - Authentication
   /online-access:
     post:
       consumes:
@@ -2286,6 +2862,48 @@ paths:
       consumes:
       - multipart/form-data
       description: Add a new job via web interface
+      parameters:
+      - description: STL or other 3D model file to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: Job name (optional, defaults to filename)
+        in: formData
+        name: name
+        type: string
+      - description: Profile ID to use for slicing
+        in: formData
+        name: profileID
+        type: number
+      - description: X position on plate (mm)
+        in: formData
+        name: x
+        type: number
+      - description: Y position on plate (mm)
+        in: formData
+        name: "y"
+        type: number
+      - description: Z position on plate (mm)
+        in: formData
+        name: z
+        type: number
+      - description: Rotation angle (degrees)
+        in: formData
+        name: rotate
+        type: number
+      - description: Scale factor (1.0 = original size)
+        in: formData
+        name: scale
+        type: number
+      - description: Generate supports (true/false)
+        in: formData
+        name: support
+        type: boolean
+      - description: Create hollow model (true/false)
+        in: formData
+        name: hollow
+        type: boolean
       produces:
       - application/json
       responses:
@@ -3780,6 +4398,252 @@ paths:
       consumes:
       - multipart/form-data
       description: Add a new profile
+      parameters:
+      - description: Profile name
+        in: formData
+        name: Name
+        required: true
+        type: string
+      - description: Profile description
+        in: formData
+        name: Description
+        type: string
+      - description: Z-axis size in mm
+        in: formData
+        name: ZSize
+        type: number
+      - description: X-axis resolution in pixels
+        in: formData
+        name: XResolution
+        type: number
+      - description: Y-axis resolution in pixels
+        in: formData
+        name: YResolution
+        type: number
+      - description: X-axis pixel size in microns
+        in: formData
+        name: PixelSizeX
+        type: number
+      - description: Y-axis pixel size in microns
+        in: formData
+        name: PixelSizeY
+        type: number
+      - description: Flip X-axis
+        in: formData
+        name: FlipX
+        type: boolean
+      - description: Flip Y-axis
+        in: formData
+        name: FlipY
+        type: boolean
+      - description: Anti-aliasing level (0-4)
+        in: formData
+        name: AntiAliasing
+        type: number
+      - description: Gantry height in mm
+        in: formData
+        name: GantryHeight
+        type: number
+      - description: Z-axis offset in mm
+        in: formData
+        name: ZOffset
+        type: number
+      - description: Lift height in mm
+        in: formData
+        name: LiftHeight
+        type: number
+      - description: Lift speed in mm/min
+        in: formData
+        name: LiftSpeed
+        type: number
+      - description: Peel speed in mm/min
+        in: formData
+        name: PeelSpeed
+        type: number
+      - description: Z-axis speed in mm/min
+        in: formData
+        name: ZSpeed
+        type: number
+      - description: Number of bottom layers
+        in: formData
+        name: BottomLayers
+        type: number
+      - description: Bottom layer light off delay in seconds
+        in: formData
+        name: BottomLightOffDelay
+        type: number
+      - description: Bottom layer lift height in mm
+        in: formData
+        name: BottomLiftHeight
+        type: number
+      - description: Bottom layer lift speed in mm/min
+        in: formData
+        name: BottomLiftSpeed
+        type: number
+      - description: Bottom layer peel speed in mm/min
+        in: formData
+        name: BottomPeelSpeed
+        type: number
+      - description: Bottom layer light time in seconds
+        in: formData
+        name: BottomLightTime
+        type: number
+      - description: Light off delay in seconds
+        in: formData
+        name: LightOffDelay
+        type: number
+      - description: Light on delay in seconds
+        in: formData
+        name: LightOnDelay
+        type: number
+      - description: Normal layer light time in seconds
+        in: formData
+        name: LightTime
+        type: number
+      - description: Retract speed in mm/min
+        in: formData
+        name: RetractSpeed
+        type: number
+      - description: Rest time before lift in seconds
+        in: formData
+        name: RestBeforeLift
+        type: number
+      - description: Rest time after lift in seconds
+        in: formData
+        name: RestAfterLift
+        type: number
+      - description: Rest time after peel in seconds
+        in: formData
+        name: RestAfterPeel
+        type: number
+      - description: Motor delay for X-axis in seconds
+        in: formData
+        name: MotorDelayX
+        type: number
+      - description: Motor delay for Y-axis in seconds
+        in: formData
+        name: MotorDelayY
+        type: number
+      - description: Motor delay for Z-axis in seconds
+        in: formData
+        name: MotorDelayZ
+        type: number
+      - description: Tilt height in degrees
+        in: formData
+        name: TiltHeight
+        type: number
+      - description: Tilt speed in degrees/min
+        in: formData
+        name: TiltSpeed
+        type: number
+      - description: Z-axis acceleration in mm/s²
+        in: formData
+        name: ZAcceleration
+        type: number
+      - description: XY-axis acceleration in mm/s²
+        in: formData
+        name: XYAcceleration
+        type: number
+      - description: Minimum exposure time in seconds
+        in: formData
+        name: MinExposureTime
+        type: number
+      - description: Maximum exposure time in seconds
+        in: formData
+        name: MaxExposureTime
+        type: number
+      - description: Printer model
+        in: formData
+        name: PrinterModel
+        type: string
+      - description: Enable screen LED
+        in: formData
+        name: ScreenLED
+        type: boolean
+      - description: Fan GPIO pin
+        in: formData
+        name: FanPin
+        type: string
+      - description: Fan speed (0-100)
+        in: formData
+        name: FanSpeed
+        type: number
+      - description: Temperature to turn on fan
+        in: formData
+        name: FanOnTemperature
+        type: number
+      - description: Temperature to turn off fan
+        in: formData
+        name: FanOffTemperature
+        type: number
+      - description: Lift height to turn on fan
+        in: formData
+        name: FanOnLiftHeight
+        type: number
+      - description: Layer number to turn on fan
+        in: formData
+        name: FanOnAfterLayer
+        type: number
+      - description: Seconds to turn on fan
+        in: formData
+        name: FanOnAfterSeconds
+        type: number
+      - description: Fan duration in seconds
+        in: formData
+        name: FanDuration
+        type: number
+      - description: Fan delay in seconds
+        in: formData
+        name: FanDelay
+        type: number
+      - description: Projector type
+        in: formData
+        name: ProjectorType
+        type: string
+      - description: Display type
+        in: formData
+        name: DisplayType
+        type: string
+      - description: Display path
+        in: formData
+        name: DisplayPath
+        type: string
+      - description: Rotate display
+        in: formData
+        name: DisplayRotate
+        type: boolean
+      - description: Display width in pixels
+        in: formData
+        name: DisplayWidth
+        type: number
+      - description: Display height in pixels
+        in: formData
+        name: DisplayHeight
+        type: number
+      - description: Display X offset
+        in: formData
+        name: DisplayOffsetX
+        type: number
+      - description: Display Y offset
+        in: formData
+        name: DisplayOffsetY
+        type: number
+      - description: Display gamma correction
+        in: formData
+        name: DisplayGamma
+        type: number
+      - description: Display brightness (0-100)
+        in: formData
+        name: DisplayBrightness
+        type: number
+      - description: Display contrast (0-100)
+        in: formData
+        name: DisplayContrast
+        type: number
+      - description: Enable display backlight
+        in: formData
+        name: DisplayBacklight
+        type: boolean
       produces:
       - application/json
       responses:
@@ -3943,6 +4807,250 @@ paths:
         name: ProfileID
         required: true
         type: string
+      - description: Profile name
+        in: formData
+        name: Name
+        type: string
+      - description: Profile description
+        in: formData
+        name: Description
+        type: string
+      - description: Z-axis size in mm
+        in: formData
+        name: ZSize
+        type: number
+      - description: X-axis resolution in pixels
+        in: formData
+        name: XResolution
+        type: number
+      - description: Y-axis resolution in pixels
+        in: formData
+        name: YResolution
+        type: number
+      - description: X-axis pixel size in microns
+        in: formData
+        name: PixelSizeX
+        type: number
+      - description: Y-axis pixel size in microns
+        in: formData
+        name: PixelSizeY
+        type: number
+      - description: Flip X-axis
+        in: formData
+        name: FlipX
+        type: boolean
+      - description: Flip Y-axis
+        in: formData
+        name: FlipY
+        type: boolean
+      - description: Anti-aliasing level (0-4)
+        in: formData
+        name: AntiAliasing
+        type: number
+      - description: Gantry height in mm
+        in: formData
+        name: GantryHeight
+        type: number
+      - description: Z-axis offset in mm
+        in: formData
+        name: ZOffset
+        type: number
+      - description: Lift height in mm
+        in: formData
+        name: LiftHeight
+        type: number
+      - description: Lift speed in mm/min
+        in: formData
+        name: LiftSpeed
+        type: number
+      - description: Peel speed in mm/min
+        in: formData
+        name: PeelSpeed
+        type: number
+      - description: Z-axis speed in mm/min
+        in: formData
+        name: ZSpeed
+        type: number
+      - description: Number of bottom layers
+        in: formData
+        name: BottomLayers
+        type: number
+      - description: Bottom layer light off delay in seconds
+        in: formData
+        name: BottomLightOffDelay
+        type: number
+      - description: Bottom layer lift height in mm
+        in: formData
+        name: BottomLiftHeight
+        type: number
+      - description: Bottom layer lift speed in mm/min
+        in: formData
+        name: BottomLiftSpeed
+        type: number
+      - description: Bottom layer peel speed in mm/min
+        in: formData
+        name: BottomPeelSpeed
+        type: number
+      - description: Bottom layer light time in seconds
+        in: formData
+        name: BottomLightTime
+        type: number
+      - description: Light off delay in seconds
+        in: formData
+        name: LightOffDelay
+        type: number
+      - description: Light on delay in seconds
+        in: formData
+        name: LightOnDelay
+        type: number
+      - description: Normal layer light time in seconds
+        in: formData
+        name: LightTime
+        type: number
+      - description: Retract speed in mm/min
+        in: formData
+        name: RetractSpeed
+        type: number
+      - description: Rest time before lift in seconds
+        in: formData
+        name: RestBeforeLift
+        type: number
+      - description: Rest time after lift in seconds
+        in: formData
+        name: RestAfterLift
+        type: number
+      - description: Rest time after peel in seconds
+        in: formData
+        name: RestAfterPeel
+        type: number
+      - description: Motor delay for X-axis in seconds
+        in: formData
+        name: MotorDelayX
+        type: number
+      - description: Motor delay for Y-axis in seconds
+        in: formData
+        name: MotorDelayY
+        type: number
+      - description: Motor delay for Z-axis in seconds
+        in: formData
+        name: MotorDelayZ
+        type: number
+      - description: Tilt height in degrees
+        in: formData
+        name: TiltHeight
+        type: number
+      - description: Tilt speed in degrees/min
+        in: formData
+        name: TiltSpeed
+        type: number
+      - description: Z-axis acceleration in mm/s²
+        in: formData
+        name: ZAcceleration
+        type: number
+      - description: XY-axis acceleration in mm/s²
+        in: formData
+        name: XYAcceleration
+        type: number
+      - description: Minimum exposure time in seconds
+        in: formData
+        name: MinExposureTime
+        type: number
+      - description: Maximum exposure time in seconds
+        in: formData
+        name: MaxExposureTime
+        type: number
+      - description: Printer model
+        in: formData
+        name: PrinterModel
+        type: string
+      - description: Enable screen LED
+        in: formData
+        name: ScreenLED
+        type: boolean
+      - description: Fan GPIO pin
+        in: formData
+        name: FanPin
+        type: string
+      - description: Fan speed (0-100)
+        in: formData
+        name: FanSpeed
+        type: number
+      - description: Temperature to turn on fan
+        in: formData
+        name: FanOnTemperature
+        type: number
+      - description: Temperature to turn off fan
+        in: formData
+        name: FanOffTemperature
+        type: number
+      - description: Lift height to turn on fan
+        in: formData
+        name: FanOnLiftHeight
+        type: number
+      - description: Layer number to turn on fan
+        in: formData
+        name: FanOnAfterLayer
+        type: number
+      - description: Seconds to turn on fan
+        in: formData
+        name: FanOnAfterSeconds
+        type: number
+      - description: Fan duration in seconds
+        in: formData
+        name: FanDuration
+        type: number
+      - description: Fan delay in seconds
+        in: formData
+        name: FanDelay
+        type: number
+      - description: Projector type
+        in: formData
+        name: ProjectorType
+        type: string
+      - description: Display type
+        in: formData
+        name: DisplayType
+        type: string
+      - description: Display path
+        in: formData
+        name: DisplayPath
+        type: string
+      - description: Rotate display
+        in: formData
+        name: DisplayRotate
+        type: boolean
+      - description: Display width in pixels
+        in: formData
+        name: DisplayWidth
+        type: number
+      - description: Display height in pixels
+        in: formData
+        name: DisplayHeight
+        type: number
+      - description: Display X offset
+        in: formData
+        name: DisplayOffsetX
+        type: number
+      - description: Display Y offset
+        in: formData
+        name: DisplayOffsetY
+        type: number
+      - description: Display gamma correction
+        in: formData
+        name: DisplayGamma
+        type: number
+      - description: Display brightness (0-100)
+        in: formData
+        name: DisplayBrightness
+        type: number
+      - description: Display contrast (0-100)
+        in: formData
+        name: DisplayContrast
+        type: number
+      - description: Enable display backlight
+        in: formData
+        name: DisplayBacklight
+        type: boolean
       produces:
       - application/json
       responses:
@@ -4291,6 +5399,319 @@ paths:
       consumes:
       - multipart/form-data
       description: Save setup configuration (Manufacturer access required)
+      parameters:
+      - description: Printer name
+        in: formData
+        name: Name
+        type: string
+      - description: Z-axis size in mm
+        in: formData
+        name: ZSize
+        type: number
+      - description: X-axis resolution in pixels
+        in: formData
+        name: XResolution
+        type: number
+      - description: Y-axis resolution in pixels
+        in: formData
+        name: YResolution
+        type: number
+      - description: X-axis pixel size in microns
+        in: formData
+        name: PixelSizeX
+        type: number
+      - description: Y-axis pixel size in microns
+        in: formData
+        name: PixelSizeY
+        type: number
+      - description: Flip X-axis
+        in: formData
+        name: FlipX
+        type: boolean
+      - description: Flip Y-axis
+        in: formData
+        name: FlipY
+        type: boolean
+      - description: Anti-aliasing level (0-4)
+        in: formData
+        name: AntiAliasing
+        type: number
+      - description: Gantry height in mm
+        in: formData
+        name: GantryHeight
+        type: number
+      - description: Z-axis offset in mm
+        in: formData
+        name: ZOffset
+        type: number
+      - description: Lift height in mm
+        in: formData
+        name: LiftHeight
+        type: number
+      - description: Lift speed in mm/min
+        in: formData
+        name: LiftSpeed
+        type: number
+      - description: Peel speed in mm/min
+        in: formData
+        name: PeelSpeed
+        type: number
+      - description: Z-axis speed in mm/min
+        in: formData
+        name: ZSpeed
+        type: number
+      - description: Number of bottom layers
+        in: formData
+        name: BottomLayers
+        type: number
+      - description: Bottom layer light off delay in seconds
+        in: formData
+        name: BottomLightOffDelay
+        type: number
+      - description: Bottom layer lift height in mm
+        in: formData
+        name: BottomLiftHeight
+        type: number
+      - description: Bottom layer lift speed in mm/min
+        in: formData
+        name: BottomLiftSpeed
+        type: number
+      - description: Bottom layer peel speed in mm/min
+        in: formData
+        name: BottomPeelSpeed
+        type: number
+      - description: Bottom layer light time in seconds
+        in: formData
+        name: BottomLightTime
+        type: number
+      - description: Light off delay in seconds
+        in: formData
+        name: LightOffDelay
+        type: number
+      - description: Light on delay in seconds
+        in: formData
+        name: LightOnDelay
+        type: number
+      - description: Normal layer light time in seconds
+        in: formData
+        name: LightTime
+        type: number
+      - description: Retract speed in mm/min
+        in: formData
+        name: RetractSpeed
+        type: number
+      - description: Rest time before lift in seconds
+        in: formData
+        name: RestBeforeLift
+        type: number
+      - description: Rest time after lift in seconds
+        in: formData
+        name: RestAfterLift
+        type: number
+      - description: Rest time after peel in seconds
+        in: formData
+        name: RestAfterPeel
+        type: number
+      - description: Motor delay for X-axis in seconds
+        in: formData
+        name: MotorDelayX
+        type: number
+      - description: Motor delay for Y-axis in seconds
+        in: formData
+        name: MotorDelayY
+        type: number
+      - description: Motor delay for Z-axis in seconds
+        in: formData
+        name: MotorDelayZ
+        type: number
+      - description: Tilt height in degrees
+        in: formData
+        name: TiltHeight
+        type: number
+      - description: Tilt speed in degrees/min
+        in: formData
+        name: TiltSpeed
+        type: number
+      - description: Z-axis acceleration in mm/s²
+        in: formData
+        name: ZAcceleration
+        type: number
+      - description: XY-axis acceleration in mm/s²
+        in: formData
+        name: XYAcceleration
+        type: number
+      - description: Minimum exposure time in seconds
+        in: formData
+        name: MinExposureTime
+        type: number
+      - description: Maximum exposure time in seconds
+        in: formData
+        name: MaxExposureTime
+        type: number
+      - description: Printer model
+        in: formData
+        name: PrinterModel
+        type: string
+      - description: Enable screen LED
+        in: formData
+        name: ScreenLED
+        type: boolean
+      - description: Fan GPIO pin
+        in: formData
+        name: FanPin
+        type: string
+      - description: Fan speed (0-100)
+        in: formData
+        name: FanSpeed
+        type: number
+      - description: Temperature to turn on fan
+        in: formData
+        name: FanOnTemperature
+        type: number
+      - description: Temperature to turn off fan
+        in: formData
+        name: FanOffTemperature
+        type: number
+      - description: Lift height to turn on fan
+        in: formData
+        name: FanOnLiftHeight
+        type: number
+      - description: Layer number to turn on fan
+        in: formData
+        name: FanOnAfterLayer
+        type: number
+      - description: Seconds to turn on fan
+        in: formData
+        name: FanOnAfterSeconds
+        type: number
+      - description: Fan duration in seconds
+        in: formData
+        name: FanDuration
+        type: number
+      - description: Fan delay in seconds
+        in: formData
+        name: FanDelay
+        type: number
+      - description: Projector type
+        in: formData
+        name: ProjectorType
+        type: string
+      - description: Display type
+        in: formData
+        name: DisplayType
+        type: string
+      - description: Display path
+        in: formData
+        name: DisplayPath
+        type: string
+      - description: Rotate display
+        in: formData
+        name: DisplayRotate
+        type: boolean
+      - description: Display width in pixels
+        in: formData
+        name: DisplayWidth
+        type: number
+      - description: Display height in pixels
+        in: formData
+        name: DisplayHeight
+        type: number
+      - description: Display X offset
+        in: formData
+        name: DisplayOffsetX
+        type: number
+      - description: Display Y offset
+        in: formData
+        name: DisplayOffsetY
+        type: number
+      - description: Display gamma correction
+        in: formData
+        name: DisplayGamma
+        type: number
+      - description: Display brightness (0-100)
+        in: formData
+        name: DisplayBrightness
+        type: number
+      - description: Display contrast (0-100)
+        in: formData
+        name: DisplayContrast
+        type: number
+      - description: Enable display backlight
+        in: formData
+        name: DisplayBacklight
+        type: boolean
+      - description: Display power off delay in seconds
+        in: formData
+        name: DisplayPowerOffDelay
+        type: number
+      - description: Display power on delay in seconds
+        in: formData
+        name: DisplayPowerOnDelay
+        type: number
+      - description: Lift height to turn off display
+        in: formData
+        name: DisplayPowerOffLiftHeight
+        type: number
+      - description: Layer number to turn off display
+        in: formData
+        name: DisplayPowerOffAfterLayer
+        type: number
+      - description: Seconds to turn off display
+        in: formData
+        name: DisplayPowerOffAfterSeconds
+        type: number
+      - description: Display power off duration in seconds
+        in: formData
+        name: DisplayPowerOffDuration
+        type: number
+      - description: Display power off delay in seconds
+        in: formData
+        name: DisplayPowerOffDelay
+        type: number
+      - description: Lift height to turn on display
+        in: formData
+        name: DisplayPowerOnLiftHeight
+        type: number
+      - description: Layer number to turn on display
+        in: formData
+        name: DisplayPowerOnAfterLayer
+        type: number
+      - description: Seconds to turn on display
+        in: formData
+        name: DisplayPowerOnAfterSeconds
+        type: number
+      - description: Display power on duration in seconds
+        in: formData
+        name: DisplayPowerOnDuration
+        type: number
+      - description: Display power on delay in seconds
+        in: formData
+        name: DisplayPowerOnDelay
+        type: number
+      - description: Lift height to toggle display
+        in: formData
+        name: DisplayPowerToggleLiftHeight
+        type: number
+      - description: Layer number to toggle display
+        in: formData
+        name: DisplayPowerToggleAfterLayer
+        type: number
+      - description: Seconds to toggle display
+        in: formData
+        name: DisplayPowerToggleAfterSeconds
+        type: number
+      - description: Display power toggle duration in seconds
+        in: formData
+        name: DisplayPowerToggleDuration
+        type: number
+      - description: Display power toggle delay in seconds
+        in: formData
+        name: DisplayPowerToggleDelay
+        type: number
+      - description: Update custom input values
+        in: formData
+        name: UpdateCustomInput
+        type: boolean
       produces:
       - application/json
       responses:
