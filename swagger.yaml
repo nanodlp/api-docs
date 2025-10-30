@@ -1799,6 +1799,276 @@ paths:
       summary: Start printing (REST)
       tags:
       - Printer
+  /api/v1/setup:
+    post:
+      consumes:
+      - multipart/form-data
+      - application/json
+      description: Handle setup configuration via API v1. Updates printer configuration
+        settings.
+      parameters:
+      - description: Printer name
+        in: formData
+        name: Name
+        type: string
+      - description: Z-axis size in mm
+        in: formData
+        name: ZSize
+        type: number
+      - description: X-axis resolution in pixels
+        in: formData
+        name: XResolution
+        type: number
+      - description: Y-axis resolution in pixels
+        in: formData
+        name: YResolution
+        type: number
+      - description: X-axis pixel size in microns
+        in: formData
+        name: PixelSizeX
+        type: number
+      - description: Y-axis pixel size in microns
+        in: formData
+        name: PixelSizeY
+        type: number
+      - description: Flip X-axis
+        in: formData
+        name: FlipX
+        type: boolean
+      - description: Flip Y-axis
+        in: formData
+        name: FlipY
+        type: boolean
+      - description: Anti-aliasing level (0-4)
+        in: formData
+        name: AntiAliasing
+        type: number
+      - description: Gantry height in mm
+        in: formData
+        name: GantryHeight
+        type: number
+      - description: Z-axis offset in mm
+        in: formData
+        name: ZOffset
+        type: number
+      - description: Lift height in mm
+        in: formData
+        name: LiftHeight
+        type: number
+      - description: Lift speed in mm/min
+        in: formData
+        name: LiftSpeed
+        type: number
+      - description: Peel speed in mm/min
+        in: formData
+        name: PeelSpeed
+        type: number
+      - description: Z-axis speed in mm/min
+        in: formData
+        name: ZSpeed
+        type: number
+      - description: Number of bottom layers
+        in: formData
+        name: BottomLayers
+        type: number
+      - description: Bottom layer light off delay in seconds
+        in: formData
+        name: BottomLightOffDelay
+        type: number
+      - description: Bottom layer lift height in mm
+        in: formData
+        name: BottomLiftHeight
+        type: number
+      - description: Bottom layer lift speed in mm/min
+        in: formData
+        name: BottomLiftSpeed
+        type: number
+      - description: Bottom layer peel speed in mm/min
+        in: formData
+        name: BottomPeelSpeed
+        type: number
+      - description: Bottom layer light time in seconds
+        in: formData
+        name: BottomLightTime
+        type: number
+      - description: Light off delay in seconds
+        in: formData
+        name: LightOffDelay
+        type: number
+      - description: Light on delay in seconds
+        in: formData
+        name: LightOnDelay
+        type: number
+      - description: Normal layer light time in seconds
+        in: formData
+        name: LightTime
+        type: number
+      - description: Retract speed in mm/min
+        in: formData
+        name: RetractSpeed
+        type: number
+      - description: Rest time before lift in seconds
+        in: formData
+        name: RestBeforeLift
+        type: number
+      - description: Rest time after lift in seconds
+        in: formData
+        name: RestAfterLift
+        type: number
+      - description: Rest time after peel in seconds
+        in: formData
+        name: RestAfterPeel
+        type: number
+      - description: Motor delay for X-axis in seconds
+        in: formData
+        name: MotorDelayX
+        type: number
+      - description: Motor delay for Y-axis in seconds
+        in: formData
+        name: MotorDelayY
+        type: number
+      - description: Motor delay for Z-axis in seconds
+        in: formData
+        name: MotorDelayZ
+        type: number
+      - description: Tilt height in degrees
+        in: formData
+        name: TiltHeight
+        type: number
+      - description: Tilt speed in degrees/min
+        in: formData
+        name: TiltSpeed
+        type: number
+      - description: Z-axis acceleration in mm/s²
+        in: formData
+        name: ZAcceleration
+        type: number
+      - description: XY-axis acceleration in mm/s²
+        in: formData
+        name: XYAcceleration
+        type: number
+      - description: Minimum exposure time in seconds
+        in: formData
+        name: MinExposureTime
+        type: number
+      - description: Maximum exposure time in seconds
+        in: formData
+        name: MaxExposureTime
+        type: number
+      - description: Printer model
+        in: formData
+        name: PrinterModel
+        type: string
+      - description: Enable screen LED
+        in: formData
+        name: ScreenLED
+        type: boolean
+      - description: Fan GPIO pin
+        in: formData
+        name: FanPin
+        type: string
+      - description: Fan speed (0-100)
+        in: formData
+        name: FanSpeed
+        type: number
+      - description: Temperature to turn on fan
+        in: formData
+        name: FanOnTemperature
+        type: number
+      - description: Temperature to turn off fan
+        in: formData
+        name: FanOffTemperature
+        type: number
+      - description: Lift height to turn on fan
+        in: formData
+        name: FanOnLiftHeight
+        type: number
+      - description: Layer number to turn on fan
+        in: formData
+        name: FanOnAfterLayer
+        type: number
+      - description: Seconds to turn on fan
+        in: formData
+        name: FanOnAfterSeconds
+        type: number
+      - description: Fan duration in seconds
+        in: formData
+        name: FanDuration
+        type: number
+      - description: Fan delay in seconds
+        in: formData
+        name: FanDelay
+        type: number
+      - description: Projector type
+        in: formData
+        name: ProjectorType
+        type: string
+      - description: Display type
+        in: formData
+        name: DisplayType
+        type: string
+      - description: Display path
+        in: formData
+        name: DisplayPath
+        type: string
+      - description: Rotate display
+        in: formData
+        name: DisplayRotate
+        type: boolean
+      - description: Display width in pixels
+        in: formData
+        name: DisplayWidth
+        type: number
+      - description: Display height in pixels
+        in: formData
+        name: DisplayHeight
+        type: number
+      - description: Display X offset
+        in: formData
+        name: DisplayOffsetX
+        type: number
+      - description: Display Y offset
+        in: formData
+        name: DisplayOffsetY
+        type: number
+      - description: Display gamma correction
+        in: formData
+        name: DisplayGamma
+        type: number
+      - description: Display brightness (0-100)
+        in: formData
+        name: DisplayBrightness
+        type: number
+      - description: Display contrast (0-100)
+        in: formData
+        name: DisplayContrast
+        type: number
+      - description: Enable display backlight
+        in: formData
+        name: DisplayBacklight
+        type: boolean
+      - description: Update custom input values
+        in: formData
+        name: UpdateCustomInput
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Setup configuration saved successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad request - invalid form data or body
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Setup configuration (API)
+      tags:
+      - Settings
   /api/v1/wasm/balance/{type}:
     get:
       consumes:

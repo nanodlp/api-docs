@@ -2826,6 +2826,411 @@
                 }
             }
         },
+        "/api/v1/setup": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Handle setup configuration via API v1. Updates printer configuration settings.",
+                "consumes": [
+                    "multipart/form-data",
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Setup configuration (API)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Printer name",
+                        "name": "Name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis size in mm",
+                        "name": "ZSize",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis resolution in pixels",
+                        "name": "XResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis resolution in pixels",
+                        "name": "YResolution",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "X-axis pixel size in microns",
+                        "name": "PixelSizeX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Y-axis pixel size in microns",
+                        "name": "PixelSizeY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip X-axis",
+                        "name": "FlipX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Flip Y-axis",
+                        "name": "FlipY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Anti-aliasing level (0-4)",
+                        "name": "AntiAliasing",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Gantry height in mm",
+                        "name": "GantryHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis offset in mm",
+                        "name": "ZOffset",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height in mm",
+                        "name": "LiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift speed in mm/min",
+                        "name": "LiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Peel speed in mm/min",
+                        "name": "PeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis speed in mm/min",
+                        "name": "ZSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Number of bottom layers",
+                        "name": "BottomLayers",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light off delay in seconds",
+                        "name": "BottomLightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift height in mm",
+                        "name": "BottomLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer lift speed in mm/min",
+                        "name": "BottomLiftSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer peel speed in mm/min",
+                        "name": "BottomPeelSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Bottom layer light time in seconds",
+                        "name": "BottomLightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light off delay in seconds",
+                        "name": "LightOffDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Light on delay in seconds",
+                        "name": "LightOnDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Normal layer light time in seconds",
+                        "name": "LightTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Retract speed in mm/min",
+                        "name": "RetractSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time before lift in seconds",
+                        "name": "RestBeforeLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after lift in seconds",
+                        "name": "RestAfterLift",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Rest time after peel in seconds",
+                        "name": "RestAfterPeel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for X-axis in seconds",
+                        "name": "MotorDelayX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Y-axis in seconds",
+                        "name": "MotorDelayY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Motor delay for Z-axis in seconds",
+                        "name": "MotorDelayZ",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt height in degrees",
+                        "name": "TiltHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Tilt speed in degrees/min",
+                        "name": "TiltSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Z-axis acceleration in mm/s²",
+                        "name": "ZAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "XY-axis acceleration in mm/s²",
+                        "name": "XYAcceleration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Minimum exposure time in seconds",
+                        "name": "MinExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Maximum exposure time in seconds",
+                        "name": "MaxExposureTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Printer model",
+                        "name": "PrinterModel",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable screen LED",
+                        "name": "ScreenLED",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Fan GPIO pin",
+                        "name": "FanPin",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan speed (0-100)",
+                        "name": "FanSpeed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn on fan",
+                        "name": "FanOnTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Temperature to turn off fan",
+                        "name": "FanOffTemperature",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Lift height to turn on fan",
+                        "name": "FanOnLiftHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Layer number to turn on fan",
+                        "name": "FanOnAfterLayer",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Seconds to turn on fan",
+                        "name": "FanOnAfterSeconds",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan duration in seconds",
+                        "name": "FanDuration",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Fan delay in seconds",
+                        "name": "FanDelay",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Projector type",
+                        "name": "ProjectorType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display type",
+                        "name": "DisplayType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Display path",
+                        "name": "DisplayPath",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Rotate display",
+                        "name": "DisplayRotate",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display width in pixels",
+                        "name": "DisplayWidth",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display height in pixels",
+                        "name": "DisplayHeight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display X offset",
+                        "name": "DisplayOffsetX",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display Y offset",
+                        "name": "DisplayOffsetY",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display gamma correction",
+                        "name": "DisplayGamma",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display brightness (0-100)",
+                        "name": "DisplayBrightness",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "number",
+                        "description": "Display contrast (0-100)",
+                        "name": "DisplayContrast",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Enable display backlight",
+                        "name": "DisplayBacklight",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Update custom input values",
+                        "name": "UpdateCustomInput",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Setup configuration saved successfully",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request - invalid form data or body",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/wasm/balance/{type}": {
             "get": {
                 "description": "Get WASM balance by type",
